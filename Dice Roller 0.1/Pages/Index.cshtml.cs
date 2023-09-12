@@ -14,7 +14,9 @@ namespace Dice_Roller_0._1.Pages
 
         public void OnGet()
         {
-
+            int[] dice = {0,0,0,0,0,0,0};
         }
+
+
     }
 }
