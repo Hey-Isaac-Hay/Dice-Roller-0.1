@@ -12,6 +12,11 @@ namespace Dice_Roller_0._1.Pages
             _logger = logger;
         }
 
+        public async Task OnPostButton()
+        {
+            RollDice(mod);
+        }
+
         /*
         * 1st - d4
         * 2nd - d6
@@ -21,14 +26,52 @@ namespace Dice_Roller_0._1.Pages
         * 6th - d12
         * 7th - d20
         */
-        int[] dice = { 0, 0, 0, 0, 0, 0, 0 };
+        int[] dice = { 0, 0, 0, 0, 0, 0, 0};
+        int mod = 0;
 
         public void OnGet()
         {
-            dice[0] = 2;
-            Console.WriteLine(RollDice(2));
+            dice[0] = 1;
+            dice[1] = 1;
+            dice[2] = 1;
+            dice[3] = 1;
+            dice[4] = 1;
+            dice[5] = 1;
+            dice[6] = 1;
+            Console.WriteLine(RollDice(5));
          
         }
+
+        public void MoreLessDice(int die,bool add)
+        {
+            int mod = 0;
+            //if True, add a die
+            //if False, subtract a die
+            if (add == true)
+                mod = 1;
+            else
+                mod = -1;
+
+            //find what die we want to add/subtract from array
+            if (die == 4)
+                dice[0] += mod;
+            if (die == 6)
+                dice[1] += mod;
+            if (die == 8)
+                dice[2] += mod;
+            if (die == 10)
+                dice[3] += mod;
+            if (die == 100)
+                dice[4] += mod;
+            if (die == 12)
+                dice[5] += mod;
+            if (die == 20)
+                dice[6] += mod;
+        }
+
+
+
+
 
         public int RollDice(int mod)
         {
