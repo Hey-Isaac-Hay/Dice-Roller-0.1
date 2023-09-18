@@ -12,11 +12,6 @@ namespace Dice_Roller_0._1.Pages
             _logger = logger;
         }
 
-        public async Task OnPostButton()
-        {
-            RollDice(mod);
-        }
-
         /*
         * 1st - d4
         * 2nd - d6
@@ -27,7 +22,7 @@ namespace Dice_Roller_0._1.Pages
         * 7th - d20
         */
         int[] dice = { 0, 0, 0, 0, 0, 0, 0};
-        int mod = 0;
+        int mod = 1;
 
         public void OnGet()
         {
@@ -68,10 +63,6 @@ namespace Dice_Roller_0._1.Pages
             if (die == 20)
                 dice[6] += mod;
         }
-
-
-
-
 
         public int RollDice(int mod)
         {
@@ -127,6 +118,17 @@ namespace Dice_Roller_0._1.Pages
             return sum;
         }
 
+        public void OnPostButton()
+        { 
+            dice[0] = 1;
+            dice[1] = 1;
+            dice[2] = 1;
+            dice[3] = 1;
+            dice[4] = 1;
+            dice[5] = 1;
+            dice[6] = 1;
+            Console.WriteLine(RollDice(mod));
+        }
 
     }
 }
