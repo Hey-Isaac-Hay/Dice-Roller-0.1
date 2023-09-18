@@ -21,57 +21,46 @@ namespace Dice_Roller_0._1.Pages
         * 6th - d12
         * 7th - d20
         */
-        int[] dice = { 0, 0, 0, 0, 0, 0, 0};
-        int mod = 1;
+
+        //A default array for test buttons to use
+        int[] dice = { 0, 0, 0, 0, 0, 0, 0 };
+        int mod = 2;
 
         public void OnGet()
-        {
-            dice[0] = 1;
-            dice[1] = 1;
-            dice[2] = 1;
-            dice[3] = 1;
-            dice[4] = 1;
-            dice[5] = 1;
-            dice[6] = 1;
-            Console.WriteLine(RollDice(5));
+        {//Make a default array of 1 of each die
+            int[] deArray = { 1, 1, 1, 1, 1, 1, 1 };
+            Console.WriteLine(RollDice(deArray, 2));
          
         }
 
-        public void MoreLessDice(int die,bool add)
-        {
-            int mod = 0;
-            //if True, add a die
-            //if False, subtract a die
-            if (add == true)
-                mod = 1;
-            else
-                mod = -1;
-
+        public void MoreLessDice(int[] arr, int die,int add)
+        {   //Adds or Subtracts a Die from the Array
+            //add should be -1 or 1
             //find what die we want to add/subtract from array
             if (die == 4)
-                dice[0] += mod;
-            if (die == 6)
-                dice[1] += mod;
-            if (die == 8)
-                dice[2] += mod;
-            if (die == 10)
-                dice[3] += mod;
-            if (die == 100)
-                dice[4] += mod;
-            if (die == 12)
-                dice[5] += mod;
-            if (die == 20)
-                dice[6] += mod;
+                arr[0] += add;
+            else if (die == 6)
+                arr[1] += add;
+            else if (die == 8)
+                arr[2] += add;
+            else if (die == 10)
+                arr[3] += add;
+            else if (die == 100)
+                arr[4] += add;
+            else if (die == 12)
+                arr[5] += add;
+            else if (die == 20)
+                arr[6] += add;
         }
 
-        public int RollDice(int mod)
-        {
+        public int RollDice(int[] arr, int mod)
+        {   //Rolls all Dice in Array and adds the Mod
             int sum = 0;
             Random roll = new Random();
 
-            for( int i = 0; i < dice.Length;i++)
+            for(int i = 0; i < arr.Length;i++)
             {
-               for(int j = 0; j < dice[i]; j++)
+               for(int j = 0; j < arr[i]; j++)
                 {
                     //check which die type is being rolled
                     if (i == 0)
@@ -104,7 +93,7 @@ namespace Dice_Roller_0._1.Pages
                         sum += roll.Next(1, 13);
                         Console.WriteLine("Rolled a d12");
                     }
-                    else
+                    else if (i == 6)
                     {//d20
                         sum += roll.Next(1, 21);
                         Console.WriteLine("Rolled a d20");
@@ -118,6 +107,35 @@ namespace Dice_Roller_0._1.Pages
             return sum;
         }
 
+        public int fourDropLowest()
+        {   //for creating stats
+            int[] four = { 0, 0, 0, 0, 0, 0, 0 };
+
+            //int logic
+            int hold;
+            int low = 9999999;
+            int sum = 0;
+
+            for (int i = 0;i < 4;i++)
+            {   //Roll single d6
+                four[1] = 1;
+                hold = RollDice(four, 0);
+
+                //Add to total
+                sum += hold;
+
+                //Keep track of lowest value
+                if (hold < low)
+                    low = hold;
+
+                //Now drop lowest value
+                sum -= low;
+            }
+            
+            //Return sum of dice rolls minus lowest value
+            return sum;
+        }
+
         public void OnPostButton()
         { 
             dice[0] = 1;
@@ -127,8 +145,11 @@ namespace Dice_Roller_0._1.Pages
             dice[4] = 1;
             dice[5] = 1;
             dice[6] = 1;
-            Console.WriteLine(RollDice(mod));
+            Console.WriteLine(RollDice(dice, mod));  
         }
-
+        public void OnPostTestClick()
+        {
+            Console.WriteLine("TEST");
+        }
     }
 }
