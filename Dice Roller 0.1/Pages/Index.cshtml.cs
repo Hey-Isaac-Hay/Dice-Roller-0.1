@@ -147,6 +147,7 @@ namespace Dice_Roller_0._1.Pages
             dice[6] = 1;
             Console.WriteLine(RollDice(dice, mod));  
         }
+
         public void OnPostTestClick()
         {
             Console.WriteLine("TEST");
