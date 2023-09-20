@@ -30,7 +30,7 @@ namespace Dice_Roller_0._1.Pages
         {//Make a default array of 1 of each die
             int[] deArray = { 1, 1, 1, 1, 1, 1, 1 };
             Console.WriteLine(RollDice(deArray, 2));
-         
+            OnPostFourDrop();
         }
 
         public void MoreLessDice(int[] arr, int die,int add)
@@ -76,7 +76,7 @@ namespace Dice_Roller_0._1.Pages
                     else if (i == 2)
                     {//d8
                         sum += roll.Next(1, 9);
-                        Console.WriteLine("Rolled d4");
+                        Console.WriteLine("Rolled d8");
                     }
                     else if (i == 3)
                     {//d10
@@ -112,7 +112,7 @@ namespace Dice_Roller_0._1.Pages
             int[] four = { 0, 0, 0, 0, 0, 0, 0 };
 
             //int logic
-            int hold;
+            int hold = 0;
             int low = 9999999;
             int sum = 0;
 
@@ -127,11 +127,11 @@ namespace Dice_Roller_0._1.Pages
                 //Keep track of lowest value
                 if (hold < low)
                     low = hold;
-
-                //Now drop lowest value
-                sum -= low;
             }
-            
+
+            //Now drop lowest value
+            sum -= low;
+
             //Return sum of dice rolls minus lowest value
             return sum;
         }
@@ -152,5 +152,10 @@ namespace Dice_Roller_0._1.Pages
         {
             Console.WriteLine("TEST");
         }
+        public void OnPostFourDrop()
+        {
+            Console.WriteLine(fourDropLowest());
+        }
+
     }
 }

@@ -2,8 +2,9 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    
+
 }
+
 <form asp-page-handler="button" method="post">
     <div class="text-center">
         <h1 class="display-4">Welcome</h1>
@@ -13,10 +14,37 @@
         </p>
     </div>
 </form>
+
+<!--
 <form asp-page-handler="testClick" method="post">
     <div class="text-center">
         <p>
-            <button class="btn btn-default">TEST?</button>
+            <button class="btn btn-default">TEST?</button><br>
+            <label for="textbox">Test Textbox!</label><br>
+            <input type="text" id="textbox"><br>
+            @{/*
+                int[] testArray = { 1, 1, 2, 0, 0, 0, };
+            */
+            }                          
+            <input type="button"onclick="RollDice2(testArray,1)"value="CLICK ME PLEASE IM SO LONELY">
+            <label for="fname">Name:</label>
+            <input type="text" id="fname" name="fname">
+
+            <label for="class">Choose a class:</label>
+            <select id="class">
+                <option value="barbarian">Barbarian</option>
+                <option value="bard">Bard</option>
+                <option value="cleric">Cleric</option>
+                <option value="druid">Druid</option>
+            </select>
         </p>
     </div>
 </form>
+--->
+
+<form asp-page-handler="fourDrop" method="post">
+    <button class="btn btn-default">Four Drop Lowest</button>
+</form>
+
+
+
