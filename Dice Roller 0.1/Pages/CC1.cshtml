@@ -1,0 +1,99 @@
+﻿@page
+@model Dice_Roller_0._1.Pages.CC1Model
+@{
+    ViewData["isPost"] = "false";
+}
+<body>
+    @{
+        int[] test = { 10, 10, 10, 10, 10, 10 };
+        Character bob = new Character(test, "human", "bard", "bob", "criminal", "LN");
+        CookieOptions ClassCookie = new CookieOptions();
+        ClassCookie.IsEssential = true;
+        ClassCookie.Path = "/";
+
+        string charString = "stats(" + test.ToString() + "), race(";
+
+        HttpContext.Response.Cookies.Append("CharacterCookie", "", ClassCookie);
+        //race(human), class(bard), ...abilities(1,2,3,4,5)
+    }
+</body>
+
+
+<form>
+    <div class="text-center">
+        <h1>Character Creator</h1>
+        <h2>Class</h2>
+        <!--Dropdown list to select from all classes-->
+            <label for="character">Choose a Class:</label>
+            <select id="character" name="charClass">
+                <option value="barbarian">Barbarian</option>
+                <option value="bard">Bard</option>
+                <option value="cleric">Cleric</option>
+                <option value="druid">Druid</option>
+                <option value="fighter">Fighter</option>
+                <option value="monk">Monk</option>
+                <option value="paladin">Paladin</option>
+                <option value="ranger">Ranger</option>
+                <option value="rogue">Rogue</option>
+                <option value="sorcerer">Sorcerer</option>
+                <option value="warlock">Warlock</option>
+                <option value="wizard">Wizard</option>
+            </select>
+            @{
+                
+            }
+        
+            <br />
+        <h2>Race</h2>
+        <!--Dropdown list to select from all races-->
+        <label for="race">Choose a Race:</label>
+        <select id="race" name="charRace">
+            <option value="dwarf">Dwarf</option>
+            <option value="elf">Elf</option>
+            <option value="halfling">Halfling</option>
+            <option value="human">Human</option>
+            <option value="dragonborn">Dragonborn</option>
+            <option value="gnome">Gnome</option>
+            <option value="halfElf">Half-Elf</option>
+            <option value="halfOrc">Half-Orc</option>
+            <option value="tiefling">Tiefling</option>
+        </select>
+        <br />
+        <br />
+        <!--Submit button that saves selected class in a variable-->
+        <input type="submit" value="Submit" />
+    </div>
+</form>
+
+
+
+<!--
+<body>
+    @{/*
+        bool isPost = true;
+
+        if (isPost)
+        {
+            <form>
+                Company Name:<br>
+                <input type="text" name="CompanyName" value=""><br>
+                Contact Name:<br><br>
+                <input type="text" name="ContactName" value=""><br><br>
+                <button class="btn btn-default" onclick=@{/*isPost=false;*/}>Submit</button>>
+            </form>
+        }
+        else
+        {
+            string companyname = CompanyName;
+            string contactname = "submitted";
+            <p>
+                You entered: <br>
+                Company Name: companyname <br>
+                Contact Name: contactname
+            </p>
+        }
+
+        
+    }
+</body> 
+-->
