@@ -21,7 +21,11 @@
 
 <form>
     <div class="text-center">
-        <h1>Character Creator</h1>
+        <h1 id="CCTitle">Character Creator</h1>
+        <h2>Name</h2>
+        <!--Text Box Input for Name-->
+        <label for="Name">Choose a Name</label>
+        <input type="text" id="Name" name="Name">
         <h2>Class</h2>
         <!--Dropdown list to select from all classes-->
             <label for="character">Choose a Class:</label>
@@ -39,9 +43,6 @@
                 <option value="warlock">Warlock</option>
                 <option value="wizard">Wizard</option>
             </select>
-            @{
-                
-            }
         
             <br />
         <h2>Race</h2>
@@ -57,6 +58,25 @@
             <option value="halfElf">Half-Elf</option>
             <option value="halfOrc">Half-Orc</option>
             <option value="tiefling">Tiefling</option>
+        </select>
+        <br />
+        <h2>Background</h2>
+        <!--Dropdown List to select from all backgrounds-->
+        <label for="background">Choose a Background:</label>
+        <select id="background" name="charBackground">
+            <option value="acolyte">Acolyte</option>
+            <option value="charlatan">Charlatan</option>
+            <option value="criminal">Criminal</option>
+            <option value="entertainer">Entertainer</option>
+            <option value="folk-hero">Folk Hero</option>
+            <option value="guild-artisan">Guild Artisan</option>
+            <option value="hermit">Hermit</option>
+            <option value="noble">Noble</option>
+            <option value="outlander">Outlander</option>
+            <option value="sage">Sage</option>
+            <option value="sailor">Sailor</option>
+            <option value="soldier">Soldier</option>
+            <option value="urchin">Urchin</option>
         </select>
         <br />
         <br />

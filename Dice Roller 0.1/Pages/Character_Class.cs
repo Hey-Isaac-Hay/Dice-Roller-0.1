@@ -48,6 +48,9 @@ public class Character
     public int speed = 6;
 
     public int armorClass = 10;
+
+    //will track items in the player's inventory, items will be comma separated
+    public string inventory = "";
     
     public Character(int[] stats, string race, string _class, string name, string background, string alignment)
     {  
@@ -90,11 +93,161 @@ public class Character
         //give the character the correct, basic armor class (not checking inventory for armor yet or abilities)
         armorClass += mods[1];
     }
-    //index: 0 is strength, 1 is dexterity, 2 is constitution
-    //index: 3 is intelligence, 4 is wisdom, 5 is charisma
-    public int getStat(int stat)
+    
+    //retrieves a desired stat
+    public int getStr()
     {
-        return stats[stat];
+        return stats[0];
+    }
+    public int getDex()
+    {
+        return stats[1];
+    }
+    public int getCon()
+    {
+        return stats[2];
+    }
+    public int getInt()
+    {
+        return stats[3];
+    }
+    public int getWis()
+    {
+        return stats[4];
+    }
+    public int getCha()
+    {
+        return stats[5];
+    }
+
+    //sets the value of a desired stat
+    public void setStr(int str)
+    {
+        stats[0] = str;
+        mods[0] = (str - 10) / 2;
+    }
+    public void setDex(int dex)
+    {
+        stats[1] = dex;
+        mods[1] = (dex - 10) / 2;
+    }
+    public void setCon(int con)
+    {
+        stats[2] = con;
+        mods[2] = (con - 10) / 2;
+    }
+    public void setInt(int intel)
+    {
+        stats[3] = intel;
+        mods[3] = (intel - 10) / 2;
+    }
+    public void setWis(int wis)
+    {
+        stats[4] = wis;
+        mods[4] = (wis - 10) / 2;
+    }
+    public void setCha(int cha)
+    {
+        stats[5] = cha;
+        mods[5] = (cha - 10) / 2;
+    }
+
+    //gets or sets the race of the character
+    public string getRace()
+    {
+        return race;
+    }
+    public void setRace(string newRace)
+    {
+        race = newRace;
+    }
+
+    //gets or sets the class of the character
+    public string getClass()
+    {
+        return _class;
+    }
+    public void setClass(string newClass)
+    {
+        _class = newClass;
+    }
+
+    //gets or sets the name of the character
+    public string getName()
+    {
+        return name;
+    }
+    public void setName(string newName)
+    {
+        name = newName;
+    }
+
+    //gets or sets the background of the character
+    public string getBackground()
+    {
+        return background;
+    }
+    public void setBackground(string newBackground)
+    {
+        background = newBackground;
+    }
+
+    //gets or sets the alignment of the character
+    public string getAlignment()
+    {
+        return alignment;
+    }
+    public void setAlignment(string newAlignment)
+    {
+        alignment = newAlignment;
+    }
+
+    //gets or sets the proficiency bonus
+    public int getProfBonus()
+    {
+        return profBonus;
+    }
+    public void setProfBonus(int newProfBonus)
+    {
+        profBonus = newProfBonus;
+    }
+
+    //gets or sets the speed of the character
+    public int getSpeed()
+    {
+        return speed;
+    }
+    public void setSpeed(int newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    //gets or sets the armor class of the character
+    public int getArmorClass()
+    {
+        return armorClass;
+    }
+    public void setArmorClass(int newArmorClass)
+    {
+        armorClass = newArmorClass;
+    }
+
+    //gets or sets the skill bonus for each skill
+    /*index: (18 skills)
+     * 0 - Acrobatics, 1 - Animal Handling, 2 - Arcana
+     * 3 - Athletics, 4 - Deception, 5 - History
+     * 6 - Insight, 7 - Intimidation, 8 - Investigation
+     * 9 - Medicine, 10 - Nature, 11 - Perception
+     * 12 - Performance, 13 - Persuasion, 14 - Religion
+     * 15 - Sleight of Hand, 16 - Stealth, 17 - Survival
+     */
+    public int getSkillBonus(int index)
+    {
+        return skills[index];
+    }
+    public void setSkillBonus(int index, int newSkillBonus)
+    {
+        skills[index] = newSkillBonus;
     }
 
     //does a strength based attack
