@@ -7,13 +7,16 @@
     @{
         int[] test = { 10, 10, 10, 10, 10, 10 };
         Character bob = new Character(test, "human", "bard", "bob", "criminal", "LN");
-        CookieOptions ClassCookie = new CookieOptions();
-        ClassCookie.IsEssential = true;
-        ClassCookie.Path = "/";
+
+
+        CookieOptions CharacterCookie = new CookieOptions();
+        CharacterCookie.IsEssential = true;
+        CharacterCookie.Path = "/";
 
         string charString = "stats(" + test.ToString() + "), race(";
 
-        HttpContext.Response.Cookies.Append("CharacterCookie", "", ClassCookie);
+        //Name, Value, ObjectName
+        HttpContext.Response.Cookies.Append("CharacterCookie", "", CharacterCookie);
         //race(human), class(bard), ...abilities(1,2,3,4,5)
     }
 </body>

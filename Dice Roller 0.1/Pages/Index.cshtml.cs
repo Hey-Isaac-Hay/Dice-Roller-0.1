@@ -5,12 +5,15 @@ namespace Dice_Roller_0._1.Pages
 {
     public class IndexModel : PageModel
     {
+
+        /* Comment out to match video
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
+        */
 
         /*
         * 1st - d4
@@ -31,6 +34,7 @@ namespace Dice_Roller_0._1.Pages
             int[] deArray = { 1, 1, 1, 1, 1, 1, 1 };
             Console.WriteLine(RollDice(deArray, 2));
             OnPostFourDrop();
+
         }
 
         public void MoreLessDice(int[] arr, int die,int add)
