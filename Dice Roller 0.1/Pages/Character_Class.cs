@@ -42,17 +42,23 @@ public class Character
     public string _class = "";
 
     public string name = "";
+
     public string background = "";
+
     public string alignment = "";
 
     public int speed = 6;
 
     public int armorClass = 10;
 
+    public string size = "medium";
+
+    public int health = 0;
+
     //will track items in the player's inventory, items will be comma separated
     public string inventory = "";
     
-    public Character(int[] stats, string race, string _class, string name, string background, string alignment)
+    public Character(int[] stats, string race, string _class, string name, string background, string alignment, int health)
     {  
         //scan through each stat and check whether it is
         //too high (above 30) or too low (below 1)
@@ -92,6 +98,9 @@ public class Character
 
         //give the character the correct, basic armor class (not checking inventory for armor yet or abilities)
         armorClass += mods[1];
+
+        //assigns the health value to the character
+        this.health = health;
     }
     
     //retrieves a desired stat
@@ -232,6 +241,18 @@ public class Character
         armorClass = newArmorClass;
     }
 
+    //gets or sets the size of the character
+    public string getSize()
+    {
+        return size;
+    }
+    public void setSize(string newSize)
+    {
+        size = newSize;
+    }
+
+
+
     //gets or sets the skill bonus for each skill
     /*index: (18 skills)
      * 0 - Acrobatics, 1 - Animal Handling, 2 - Arcana
@@ -250,20 +271,31 @@ public class Character
         skills[index] = newSkillBonus;
     }
 
+    //gets or sets the health of the character
+    public int getHealth()
+    {
+        return health;
+    }
+    public void takeDamage(int dmgDealt)
+    {
+        health -= dmgDealt;
+    }
+
     //does a strength based attack
     //in future, will need to check that enemy and character are next to each other
     //also will need to check which weapon is being used to deal the right damage
     //also will need to check if character has proficiency in weapon being used
-    public void meleeAttack(int enemyArmor)
+    public void meleeAttack(Enemy enemy)
     {
         int total = 0;
         int damage = 0;
         Random num = new Random();
         total += num.Next(1, 21);
         total += mods[0] + profBonus;
-        if (total - enemyArmor >= 0)
+        if (total - enemy.getArmorClass() >= 0)
         {
             damage += num.Next(1, 9) + mods[0];
+            enemy.takeDamage(damage);
             Console.WriteLine("You hit the enemy and dealt " + damage + " damage");
         }
         else
@@ -275,14 +307,16 @@ public class Character
     //does a dex based attack typically from a distance
     //will eventually need to check distance from enemy to character compared to weapon range
     //will eventually need to check line of sight to see if character can reasonably hit enemy
-    public void rangedAttack(int enemyArmor)
+    public void rangedAttack(Enemy enemy)
     {
         int total = 0;
+        int damage = 0;
         Random num = new Random();
         total += num.Next(1, 21) + mods[1] + profBonus;
-        if (total - enemyArmor >= 0)
+        if (total - enemy.getArmorClass() >= 0)
         {
-            int damage = num.Next(1, 9) + mods[1];
+            damage += num.Next(1, 9) + mods[0];
+            enemy.takeDamage(damage);
             Console.WriteLine("You hit the enemy and dealt " + damage + " damage");
         } 
         else

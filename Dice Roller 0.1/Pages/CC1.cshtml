@@ -5,16 +5,7 @@
 }
 <body>
     @{
-        int[] test = { 10, 10, 10, 10, 10, 10 };
-        Character bob = new Character(test, "human", "bard", "bob", "criminal", "LN");
-        CookieOptions ClassCookie = new CookieOptions();
-        ClassCookie.IsEssential = true;
-        ClassCookie.Path = "/";
-
-        string charString = "stats(" + test.ToString() + "), race(";
-
-        HttpContext.Response.Cookies.Append("CharacterCookie", "", ClassCookie);
-        //race(human), class(bard), ...abilities(1,2,3,4,5)
+        
     }
 </body>
 
@@ -30,6 +21,7 @@
         <!--Dropdown list to select from all classes-->
             <label for="character">Choose a Class:</label>
             <select id="character" name="charClass">
+                <option value="">Choose a Class</option>
                 <option value="barbarian">Barbarian</option>
                 <option value="bard">Bard</option>
                 <option value="cleric">Cleric</option>
@@ -43,12 +35,12 @@
                 <option value="warlock">Warlock</option>
                 <option value="wizard">Wizard</option>
             </select>
-        
             <br />
         <h2>Race</h2>
         <!--Dropdown list to select from all races-->
         <label for="race">Choose a Race:</label>
         <select id="race" name="charRace">
+            <option value="">Choose a Race</option>
             <option value="dwarf">Dwarf</option>
             <option value="elf">Elf</option>
             <option value="halfling">Halfling</option>
@@ -64,6 +56,7 @@
         <!--Dropdown List to select from all backgrounds-->
         <label for="background">Choose a Background:</label>
         <select id="background" name="charBackground">
+            <option value="">Choose a Background</option>
             <option value="acolyte">Acolyte</option>
             <option value="charlatan">Charlatan</option>
             <option value="criminal">Criminal</option>
@@ -79,13 +72,32 @@
             <option value="urchin">Urchin</option>
         </select>
         <br />
+        <h2>Alignment</h2>
+        <!--Dropdown List to select from all alignments-->
+        <label for="alignment">Choose an Alignment:</label>
+        <select id="alignment" name="charAlignment">
+            <option value="">Choose an Alignment</option>
+            <option value="lg">Lawful Good</option>
+            <option value="ln">Lawful Neutral</option>
+            <option value="le">Lawful Evil</option>
+            <option value="ng">Neutral Good</option>
+            <option value="tn">True Neutral</option>
+            <option value="ne">Neutral Evil</option>
+            <option value="cg">Chaotic Good</option>
+            <option value="cn">Chaotic Neutral</option>
+            <option value="ce">Chaotic Evil</option>
+        </select>
+        <br />
         <br />
         <!--Submit button that saves selected class in a variable-->
         <input type="submit" value="Submit" />
     </div>
 </form>
 
-
+<form asp-page-handler="getCookie" method="post">
+    <button class="btn btn-default">Update Cookie: Value - @ViewData["testCookie"]</button>
+    <label></label>
+</form>
 
 <!--
 <body>

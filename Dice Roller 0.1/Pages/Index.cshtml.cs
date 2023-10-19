@@ -31,6 +31,8 @@ namespace Dice_Roller_0._1.Pages
             int[] deArray = { 1, 1, 1, 1, 1, 1, 1 };
             Console.WriteLine(RollDice(deArray, 2));
             OnPostFourDrop();
+
+
         }
 
         public void MoreLessDice(int[] arr, int die,int add)
