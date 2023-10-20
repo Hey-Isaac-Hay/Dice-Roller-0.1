@@ -22,5 +22,9 @@ namespace Dice_Roller_0._1.Pages
             ViewData["testCookie"] = Request.Cookies["CharacterCookie"];
             Console.Write("GET COOKIE RAN");
         }
+        public void OnPostSubmitPt1()
+        {
+            
+        }
     }
 }

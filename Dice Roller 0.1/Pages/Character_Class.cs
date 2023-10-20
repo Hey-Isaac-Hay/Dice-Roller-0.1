@@ -53,12 +53,14 @@ public class Character
 
     public string size = "medium";
 
+    public int maxHealth = 0;
+
     public int health = 0;
 
     //will track items in the player's inventory, items will be comma separated
     public string inventory = "";
     
-    public Character(int[] stats, string race, string _class, string name, string background, string alignment, int health)
+    public Character(int[] stats, string name, string race, string _class, int maxHealth, int health, string background, string alignment)
     {  
         //scan through each stat and check whether it is
         //too high (above 30) or too low (below 1)
@@ -81,6 +83,10 @@ public class Character
         }
         //assign chosen race to instance variable
         this.race = race;
+        if(race.Equals("dwarf") || race.Equals("halfling") || race.Equals("gnome"))
+        {
+            speed = 5;
+        }
 
         //assign chosen class to instance variable
         this._class = _class; 
@@ -100,6 +106,7 @@ public class Character
         armorClass += mods[1];
 
         //assigns the health value to the character
+        this.maxHealth = maxHealth;
         this.health = health;
     }
     
