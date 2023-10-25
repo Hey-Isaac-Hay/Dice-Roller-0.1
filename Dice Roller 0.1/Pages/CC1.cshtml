@@ -16,11 +16,11 @@
         <h2>Name</h2>
         <!--Text Box Input for Name-->
         <label for="Name">Choose a Name</label>
-        <input type="text" id="Name" name="Name">
+        <input type="text" id="Name" name="Name" runat="server">
         <h2>Class</h2>
         <!--Dropdown list to select from all classes-->
-            <label for="character">Choose a Class:</label>
-            <select id="character" name="selectClass">
+            <label for="selectClass">Choose a Class:</label>
+            <select id="selectClass" name="selectClass">
                 <option value="">Choose a Class</option>
                 <option value="barbarian">Barbarian</option>
                 <option value="bard">Bard</option>
@@ -38,8 +38,8 @@
             <br />
         <h2>Race</h2>
         <!--Dropdown list to select from all races-->
-        <label for="race">Choose a Race:</label>
-        <select id="race" name="selectRace">
+        <label for="selectRace">Choose a Race:</label>
+        <select id="selectRace" name="selectRace">
             <option value="">Choose a Race</option>
             <option value="dwarf">Dwarf</option>
             <option value="elf">Elf</option>
@@ -54,8 +54,8 @@
         <br />
         <h2>Background</h2>
         <!--Dropdown List to select from all backgrounds-->
-        <label for="background">Choose a Background:</label>
-        <select id="background" name="selectBackground">
+        <label for="selectBackground">Choose a Background:</label>
+        <select id="selectBackground" name="selectBackground">
             <option value="">Choose a Background</option>
             <option value="acolyte">Acolyte</option>
             <option value="charlatan">Charlatan</option>
@@ -74,8 +74,8 @@
         <br />
         <h2>Alignment</h2>
         <!--Dropdown List to select from all alignments-->
-        <label for="alignment">Choose an Alignment:</label>
-        <select id="alignment" name="selectAlignment">
+        <label for="selectAlignment">Choose an Alignment:</label>
+        <select id="selectAlignment" name="selectAlignment">
             <option value="">Choose an Alignment</option>
             <option value="lg">Lawful Good</option>
             <option value="ln">Lawful Neutral</option>
@@ -89,9 +89,10 @@
         </select>
         <br />
         <br />
-        <form asp-page-handler="submitPt1" method="post">
+        <form asp-page-handler="SubmitPtOne" method="post">
             <!--Submit button that saves selected class in a variable-->
-            <input type="submit" value="Submit" class="submit" />
+            <!--<input type="submit" value="Submit" class="submit" />-->
+            <button>Submit-Data: @ViewData["CC1Data"]</button>
         </form>
         
         <br />
@@ -101,17 +102,7 @@
 <div class="text-center">
     <button onclick="window.location.href='https://localhost:44331/Index';">Back</button><button onclick="window.location.href='https://localhost:44331/CC2';">Continue</button>
 </div>
-<form asp-page-handler="getCookie" method="post">
-    <button class="btn btn-default">Update Cookie: Value - @ViewData["testCookie"]</button>
-    <label></label>
-</form>
 <br />
-Name: @Request.Form["Name"];
-<br />
-Class:  @Request.Form["selectClass"];
-<br>
-
-
 <!--
 <body>
     @{/*

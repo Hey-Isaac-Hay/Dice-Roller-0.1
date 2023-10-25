@@ -53,14 +53,14 @@ public class Character
 
     public string size = "medium";
 
-    public int maxHealth = 0;
+    public int maxHP = 0;
 
-    public int health = 0;
+    public int currHP = 0;
 
     //will track items in the player's inventory, items will be comma separated
     public string inventory = "";
     
-    public Character(int[] stats, string name, string race, string _class, int maxHealth, int health, string background, string alignment)
+    public Character(int[] stats, string name, string race, string _class, int maxHP, int currHP, string background, string alignment)
     {  
         //scan through each stat and check whether it is
         //too high (above 30) or too low (below 1)
@@ -105,9 +105,9 @@ public class Character
         //give the character the correct, basic armor class (not checking inventory for armor yet or abilities)
         armorClass += mods[1];
 
-        //assigns the health value to the character
-        this.maxHealth = maxHealth;
-        this.health = health;
+        //assigns the currHP value to the character
+        this.maxHP = maxHP;
+        this.currHP = currHP;
     }
     
     //retrieves a desired stat
@@ -279,13 +279,13 @@ public class Character
     }
 
     //gets or sets the health of the character
-    public int getHealth()
+    public int getcurrHP()
     {
-        return health;
+        return currHP;
     }
     public void takeDamage(int dmgDealt)
     {
-        health -= dmgDealt;
+        currHP -= dmgDealt;
     }
 
     //does a strength based attack
