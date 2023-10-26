@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Xml.Linq;
 
 namespace Dice_Roller_0._1.Pages
 {
@@ -17,7 +18,7 @@ namespace Dice_Roller_0._1.Pages
         }
 
         //race(human), class(bard), ...abilities(1,2,3,4,5)
-        public void OnPostSubmitPtOne()
+        public void OnPostCC1Submit()
         {
             string nameInput = "_name:" + Request.Query["Name"] + ",";
             string raceInput = "_race:" + Request.Query["selectRace"] + ",";
@@ -35,12 +36,23 @@ namespace Dice_Roller_0._1.Pages
             }
 
             string CC1Data = nameInput + raceInput +  classInput + maxHPInput + currHPInput + bgInput + alInput + sizeInput;
-            ViewData["CC1Data"] = CC1Data;
+            
 
-            CookieOptions CC1Cookie = new CookieOptions();
-            CC1Cookie.IsEssential = true;
-            CC1Cookie.Path = "/";
-            HttpContext.Response.Cookies.Append("CC1Cookie", CC1Data, CC1Cookie);
+            CookieOptions CC1CookieObject = new CookieOptions();
+            CC1CookieObject.IsEssential = true;
+            CC1CookieObject.Path = "/";
+            HttpContext.Response.Cookies.Append("CC1Cookie", CC1Data, CC1CookieObject);
+
+            ViewData["CC1Data"] = Request.Cookies["CC1Cookie"];
+        }
+        public void OnPostTEST()
+        {
+            CookieOptions CC1CookieObject = new CookieOptions();
+            CC1CookieObject.IsEssential = true;
+            CC1CookieObject.Path = "/";
+            HttpContext.Response.Cookies.Append("your_mom_cookie", "your mom", CC1CookieObject);
+
+            ViewData["TESTVALUE"] = Request.Cookies["your_mom_cookie"];
         }
     }
 }

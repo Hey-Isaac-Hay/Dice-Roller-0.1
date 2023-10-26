@@ -1,8 +1,6 @@
 ﻿@page
 @model Dice_Roller_0._1.Pages.CC1Model
-@{
-    ViewData["isPost"] = "false";
-}
+
 <body>
     @{
         
@@ -20,7 +18,7 @@
         <h2>Class</h2>
         <!--Dropdown list to select from all classes-->
             <label for="selectClass">Choose a Class:</label>
-            <select id="selectClass" name="selectClass">
+            <select id="selectClass" name="selectClass" runat="server">
                 <option value="">Choose a Class</option>
                 <option value="barbarian">Barbarian</option>
                 <option value="bard">Bard</option>
@@ -39,7 +37,7 @@
         <h2>Race</h2>
         <!--Dropdown list to select from all races-->
         <label for="selectRace">Choose a Race:</label>
-        <select id="selectRace" name="selectRace">
+        <select id="selectRace" name="selectRace" runat="server">
             <option value="">Choose a Race</option>
             <option value="dwarf">Dwarf</option>
             <option value="elf">Elf</option>
@@ -55,7 +53,7 @@
         <h2>Background</h2>
         <!--Dropdown List to select from all backgrounds-->
         <label for="selectBackground">Choose a Background:</label>
-        <select id="selectBackground" name="selectBackground">
+        <select id="selectBackground" name="selectBackground" runat="server">
             <option value="">Choose a Background</option>
             <option value="acolyte">Acolyte</option>
             <option value="charlatan">Charlatan</option>
@@ -75,7 +73,7 @@
         <h2>Alignment</h2>
         <!--Dropdown List to select from all alignments-->
         <label for="selectAlignment">Choose an Alignment:</label>
-        <select id="selectAlignment" name="selectAlignment">
+        <select id="selectAlignment" name="selectAlignment" runat="server">
             <option value="">Choose an Alignment</option>
             <option value="lg">Lawful Good</option>
             <option value="ln">Lawful Neutral</option>
@@ -89,10 +87,21 @@
         </select>
         <br />
         <br />
-        <form asp-page-handler="SubmitPtOne" method="post">
+        <form asp-page-handler="CC1Submit" method="post">
             <!--Submit button that saves selected class in a variable-->
             <!--<input type="submit" value="Submit" class="submit" />-->
-            <button>Submit-Data: @ViewData["CC1Data"]</button>
+            <button>Submit</button>
+            <p>@{
+                   var CC1VAR = ViewData["CC1Data"];
+                }
+                Data: @CC1VAR?.ToString()</p>
+            <p>Name: @Request.Query["Name"]</p>
+        </form>
+        <form asp-page-handler="TEST" method="post">
+            <!--Submit button that saves selected class in a variable-->
+            <!--<input type="submit" value="Submit" class="submit" />-->
+            <button>TEST</button>
+            <p>TEST - @ViewData["TESTVALUE"]</p>
         </form>
         
         <br />
@@ -102,34 +111,3 @@
 <div class="text-center">
     <button onclick="window.location.href='https://localhost:44331/Index';">Back</button><button onclick="window.location.href='https://localhost:44331/CC2';">Continue</button>
 </div>
-<br />
-<!--
-<body>
-    @{/*
-        bool isPost = true;
-
-        if (isPost)
-        {
-            <form>
-                Company Name:<br>
-                <input type="text" name="CompanyName" value=""><br>
-                Contact Name:<br><br>
-                <input type="text" name="ContactName" value=""><br><br>
-                <button class="btn btn-default" onclick=@{/*isPost=false;*/}>Submit</button>>
-            </form>
-        }
-        else
-        {
-            string companyname = CompanyName;
-            string contactname = "submitted";
-            <p>
-                You entered: <br>
-                Company Name: companyname <br>
-                Contact Name: contactname
-            </p>
-        }
-
-        
-    }
-</body> 
--->
