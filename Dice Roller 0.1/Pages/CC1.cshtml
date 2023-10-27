@@ -10,6 +10,7 @@
 
 
         CookieOptions CharacterCookie = new CookieOptions();
+        CharacterCookie.Expires = DateTime.Now.AddYears(99);
         CharacterCookie.IsEssential = true;
         CharacterCookie.Path = "/";
 
