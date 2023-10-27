@@ -11,9 +11,9 @@ namespace Dice_Roller_0._1.Pages
             
         }
 
-        public void OnPostButtonTest() 
+        public void OnPostTEST()
         {
-            
+            retrieve();
         }
 
         public void makeCharacter(int[] stats,  string name, string race, string _class, int maxHP, int currHP, string background, string alignment, string size)
@@ -30,14 +30,12 @@ namespace Dice_Roller_0._1.Pages
             int intel = 0;
             int wis = 0;
             int cha = 0;
-            string info = "";
+            string? info = "";
+            info = Request.Cookies["charCookie"];
+            
+            str = int.Parse(info.Substring(info.IndexOf("_str:") + 5, info.IndexOf(",_dex:")));
 
-            var testValue = Request.Cookies["charCookie"];
-            if (testValue != null)
-            {
-                info = testValue.ToString();
-            }
-
+            Console.WriteLine("Character strength: " +  str);
             return new int[] { str, dex, con, intel, wis, cha }; 
         }
 

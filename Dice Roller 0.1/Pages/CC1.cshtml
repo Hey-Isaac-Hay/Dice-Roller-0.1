@@ -3,7 +3,7 @@
 
 <body>
     @{
-        
+
     }
 </body>
 
@@ -87,14 +87,12 @@
         </select>
         <br />
         <br />
-        <form asp-page-handler="CC1Submit" method="post">
+        <form asp-page-handler="CCOneSubmit" method="post">
             <!--Submit button that saves selected class in a variable-->
             <!--<input type="submit" value="Submit" class="submit" />-->
             <button>Submit</button>
-            <p>@{
-                   var CC1VAR = ViewData["CC1Data"];
-                }
-                Data: @CC1VAR?.ToString()</p>
+            <p>
+                Data: @ViewData["CC1Cookie"]</p>
             <p>Name: @Request.Query["Name"]</p>
         </form>
         <form asp-page-handler="TEST" method="post">
