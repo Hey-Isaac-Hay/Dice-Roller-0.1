@@ -3,6 +3,14 @@
 
 <body>
     @{
+        ViewData["Name"] = Request.Query["Name"];
+        ViewData["Class"] = Request.Query["selectClass"];
+        ViewData["Race"] = Request.Query["selectRace"];
+        ViewData["Background"] = Request.Query["selectBackground"];
+
+
+
+
 
     }
 </body>
@@ -87,14 +95,15 @@
         </select>
         <br />
         <br />
-        <form asp-page-handler="CCOneSubmit" method="post">
+        <form asp-page-handler="Complete" method="post">
             <!--Submit button that saves selected class in a variable-->
             <!--<input type="submit" value="Submit" class="submit" />-->
             <button>Submit</button>
             <p>
-                Data: @ViewData["CC1Cookie"]</p>
-            <p>Name: @Request.Query["Name"]</p>
+                Data: @ViewData["CC1Data"]</p>
+            
         </form>
+        <p>Name: @Request.Query["Name"]</p>
         <form asp-page-handler="TEST" method="post">
             <!--Submit button that saves selected class in a variable-->
             <!--<input type="submit" value="Submit" class="submit" />-->
