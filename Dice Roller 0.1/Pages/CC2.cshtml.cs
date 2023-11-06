@@ -25,7 +25,7 @@ namespace Dice_Roller_0._1.Pages
         
         public int[] retrieve()
         {
-            string? info = Request.Cookies["charCookie"];
+            string? info = "_str:12,_dex:15,_con:14,_int:10,_wis:9,_cha:11,_name:Bob,_race:elf,_class:fighter,_maxHP:12,_currHP:8,_bg:soldier,_al:LG,_size:medium";
             int str = 0;
             int dex = 0;
             int con = 0;
@@ -33,7 +33,7 @@ namespace Dice_Roller_0._1.Pages
             int wis = 0;
             int cha = 0;
 
-            str =Convert.ToInt32(info.Substring(info.IndexOf("_str:") + 5, info.IndexOf("_dex:")));
+            str = Convert.ToInt32(info.Substring(info.IndexOf("_str:") + 5, info.IndexOf(",_dex:") - 5));
             
             
             Console.WriteLine("Character strength: " +  str);

@@ -13,7 +13,10 @@ namespace Dice_Roller_0._1.Pages
         {
             
             Cookie charCookie = new Cookie("charCookie", "_str:12,_dex:15,_con:14,_int:10,_wis:9,_cha:11,_name:Bob,_race:elf,_class:fighter,_maxHP:12,_currHP:8,_bg:soldier,_al:LG,_size:medium");
-            charCookie.Domain = "localhost:44331";
+            //Cookie goober = new Cookie("newCookie", Request.Cookies["charCookie"]);
+
+
+            
             ViewData["charBob"] = Request.Cookies["charCookie"];
             
             
@@ -54,7 +57,7 @@ namespace Dice_Roller_0._1.Pages
             //set cookie value to CC1Data
             CC1Cookie.Value = CC1Data;
             //set domain to the entire website to make cookie global
-            CC1Cookie.Domain = "localhost:44331";
+            //CC1Cookie.Domain = "localhost:44331";
 
 
             //instantiate character cookie
@@ -69,10 +72,6 @@ namespace Dice_Roller_0._1.Pages
             //ViewData["CC1Data"] = Request.Cookies["CC1Cookie"];
             ViewData["CC1Data"] = CC1Data;
             
-        }
-        public void OnPostTEST()
-        {
-            Console.WriteLine(Request.Query["Name"]);            
         }
     }
 }
