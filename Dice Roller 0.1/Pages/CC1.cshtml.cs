@@ -71,7 +71,7 @@ namespace Dice_Roller_0._1.Pages
 
             //ViewData["CC1Data"] = Request.Cookies["CC1Cookie"];
             ViewData["CC1Data"] = CC1Data;
-            
+            HttpContext.Response.Redirect("https://localhost:44331/CC2");
         }
     }
 }

@@ -15,5 +15,10 @@
     <button type="button">Display Character Data</button>
 </form>-->
 <p>@ViewData["charBob"]</p>
-<p>123 Data - @ViewData["123"]</p>
+<p>Redirected Cookie Data - @Request.Cookies["CC1Data"]</p>
+
+@{
+    string? value = Request.Cookies["CC1Data"];
+
+}
 
