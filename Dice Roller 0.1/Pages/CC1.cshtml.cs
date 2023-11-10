@@ -14,14 +14,10 @@ namespace Dice_Roller_0._1.Pages
             
             Cookie charCookie = new Cookie("charCookie", "_str:12,_dex:15,_con:14,_int:10,_wis:9,_cha:11,_name:Bob,_race:elf,_class:fighter,_maxHP:12,_currHP:8,_bg:soldier,_al:LG,_size:medium");
             //Cookie goober = new Cookie("newCookie", Request.Cookies["charCookie"]);
-
-
-            
+            Response.Cookies.Append("charCookie", charCookie.Value);
             ViewData["charBob"] = Request.Cookies["charCookie"];
-            
-            
 
-            
+            Console.WriteLine(Request.Cookies["charCookie"]);
         }
 
         //race(human), class(bard), ...abilities(1,2,3,4,5)
@@ -39,7 +35,7 @@ namespace Dice_Roller_0._1.Pages
             string currHPInput = HttpContext.Request.Query[""].ToString();
             string bgInput = HttpContext.Request.Query["selectBackground"].ToString();
             string alInput = HttpContext.Request.Query["selectAlignment"].ToString();
-            string sizeInput = HttpContext.Request.Query["selectRace"].ToString()   ;
+            string sizeInput = HttpContext.Request.Query["selectRace"].ToString();
 
             if (sizeInput.Equals("halfling") || sizeInput.Equals("gnome"))
             {
@@ -56,17 +52,6 @@ namespace Dice_Roller_0._1.Pages
 
             //set cookie value to CC1Data
             CC1Cookie.Value = CC1Data;
-            //set domain to the entire website to make cookie global
-            //CC1Cookie.Domain = "localhost:44331";
-
-
-            //instantiate character cookie
-            /*
-            CookieOptions CC1CookieObject = new CookieOptions();
-            CC1CookieObject.IsEssential = true;
-            CC1CookieObject.Path = "/";
-            HttpContext.Response.Cookies.Append("CC1Cookie", CC1Data, CC1CookieObject);
-            */
 
 
             //ViewData["CC1Data"] = Request.Cookies["CC1Cookie"];
