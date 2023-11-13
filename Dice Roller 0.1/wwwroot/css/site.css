@@ -18,7 +18,27 @@ body {
 }
 
 button{
+    background-color: grey;
+    border-width: 3px;
+    border-radius: 12px;
+}
+
+.roundButton{
     background-color: cornflowerblue;
+    border-width: 2px;
+    border-radius: 50%;
+}
+
+.submitButton {
+    background-color: deepskyblue;
+}
+
+.backButton{
+    background-color: red;
+}
+
+.continueButton{
+    background-color: limegreen;
 }
 
 #CCTitle {
@@ -26,6 +46,3 @@ button{
     text-decoration: underline;
 }
 
-.submit {
-    background-color: cornflowerblue;
-}

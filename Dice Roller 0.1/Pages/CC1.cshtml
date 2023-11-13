@@ -9,8 +9,6 @@
     }
 </body>
 
-
-<form>
     <div class="text-center">
         <h1 id="CCTitle">Character Creator</h1>
         <h2>Name</h2>
@@ -92,17 +90,17 @@
         <form asp-page-handler="Complete" method="post">
             <!--Submit button that saves selected class in a variable-->
             <!--<input type="submit" value="Submit" class="submit" />-->
-            <button>Submit</button>            
+            <button class="submitButton">Submit</button>
         </form>        
         <br />
         <br />
     </div>
-</form>
 <div class="text-center">
-    <button onclick="window.location.href='https://localhost:44331/Index';">Back</button><button onclick="window.location.href='https://localhost:44331/CC2';">Continue</button>
+    <button class="backButton" onclick="window.location.href='https://localhost:44331/Index';">Back</button><button class="continueButton" onclick="window.location.href='https://localhost:44331/CC2';">Continue</button>
 </div>
 <div>
     @{
+
         CookieOptions options = new CookieOptions();
         options.Expires = DateTime.Now.AddYears(50);
 
@@ -124,23 +122,10 @@
             sizeInput = "medium";
         }
 
-        //string CC1Data = nameInput + raceInput + classInput + maxHPInput + currHPInput + bgInput + alInput + sizeInput;
-
         string CC1Data = "_name:" + nameInput + "," + "_race:" + raceInput + "," + "_class:" + classInput + "," + "_maxHP:" + maxHPInput + "," + "_currHP:" + currHPInput + "," + "_bg:" + bgInput + "," + "_al:" + alInput + "," + "_size:" + sizeInput;
 
         Response.Cookies.Append("CC1Data", CC1Data, options);
-
-
-        CookieOptions newOptions = new CookieOptions();
-        newOptions.Expires = DateTime.Now.AddMonths(1);
-        newOptions.Path = "/";
-        HttpContext.Response.Cookies.Append("data1", "bruh", newOptions);
-        HttpContext.Response.Cookies.Append("data2", "wowzers", newOptions);
-        HttpContext.Response.Cookies.Append("data3", "goober", newOptions);
-
-        ViewData["123"] = Request.Cookies["data3"];
+        
     }
     <p>@Request.Cookies["CC1Data"]</p>
-    <p>@Request.Cookies["data1"]</p>
-    <p>@Request.Cookies["data2"]</p>
 </div>

@@ -13,10 +13,17 @@ namespace Dice_Roller_0._1.Pages
 
         public void OnPostTEST()
         {
-            
+            Character testChar = makeCharacter(Request.Cookies["charCookie"]!);
+            //Console.WriteLine("Made a(n) " + testChar.getRace() + " " + testChar.getClass());
+            string encryptedChar = "_str:" + testChar.getStr() + ",_dex:" + testChar.getDex() + ",_con:" + testChar.getCon() + 
+                ",_int:" + testChar.getInt() + ",_wis:" + testChar.getWis() + ",_cha:" + testChar.getCha() + 
+                ",_name:" + testChar.getName() + ",_race:" + testChar.getRace() + ",_class:" + testChar.getClass() + 
+                ",_maxHP:" + testChar.getMaxHP() + ",_currHP:" + testChar.getCurrHP() + ",_bg:" + testChar.getBg() + 
+                ",_al:" + testChar.getAl() + ",_size:" + testChar.getSize();
+            //ViewData["testChar"] = encryptedChar;
         }
 
-        public void makeCharacter(string input)
+        public Character makeCharacter(string input)
         {
             //creates a character using only a encrypted string
             //creates all of the variables that will be used to make the character
@@ -54,8 +61,18 @@ namespace Dice_Roller_0._1.Pages
             stats[4] = Convert.ToInt32(sortedInfo[9]);
             stats[5] = Convert.ToInt32(sortedInfo[11]);
 
+            name = sortedInfo[Array.IndexOf(sortedInfo,"name") + 1];
+            race = sortedInfo[Array.IndexOf(sortedInfo, "race") + 1];
+            _class = sortedInfo[Array.IndexOf(sortedInfo, "class") + 1];
+            maxHP = Convert.ToInt32(sortedInfo[Array.IndexOf(sortedInfo, "maxHP") + 1]);
+            currHP = Convert.ToInt32(sortedInfo[Array.IndexOf(sortedInfo, "currHP") + 1]);
+            bg = sortedInfo[Array.IndexOf(sortedInfo, "bg") + 1];
+            al = sortedInfo[Array.IndexOf(sortedInfo, "al") + 1];
+
             Character test = new Character(stats, name, race, _class, maxHP, currHP, bg, al);
+            return test;
         }   
+
         /*
         public int[] retrieve()
         {

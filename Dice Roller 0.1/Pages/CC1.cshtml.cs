@@ -17,15 +17,17 @@ namespace Dice_Roller_0._1.Pages
             Response.Cookies.Append("charCookie", charCookie.Value);
             ViewData["charBob"] = Request.Cookies["charCookie"];
 
-            Console.WriteLine(Request.Cookies["charCookie"]);
+            //Console.WriteLine(Request.Cookies["charCookie"]);
         }
 
         //race(human), class(bard), ...abilities(1,2,3,4,5)
         public void OnPostComplete()
             
         {
+            
             //Console.WriteLine("TEST!!!!!");
             Cookie CC1Cookie = new Cookie("CC1Cookie", "");
+            CC1Cookie.Expires = DateTime.Now.AddYears(50);
 
             
             string nameInput = HttpContext.Request.Query["Name"].ToString();
@@ -56,7 +58,9 @@ namespace Dice_Roller_0._1.Pages
 
             //ViewData["CC1Data"] = Request.Cookies["CC1Cookie"];
             ViewData["CC1Data"] = CC1Data;
+            
             HttpContext.Response.Redirect("https://localhost:44331/CC2");
+            //Console.WriteLine("Complete Method Ran!");
         }
     }
 }
