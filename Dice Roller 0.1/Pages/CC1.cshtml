@@ -8,13 +8,17 @@
         
     }
 </body>
-
+<form>
     <div class="text-center">
         <h1 id="CCTitle">Character Creator</h1>
         <h2>Name</h2>
         <!--Text Box Input for Name-->
         <label for="Name">Choose a Name</label>
         <input type="text" id="Name" name="Name" runat="server">
+        <br />  
+        <br />
+        
+
         <h2>Class</h2>
         <!--Dropdown list to select from all classes-->
             <label for="selectClass">Choose a Class:</label>
@@ -91,19 +95,28 @@
             <!--Submit button that saves selected class in a variable-->
             <!--<input type="submit" value="Submit" class="submit" />-->
             <button class="submitButton">Submit</button>
-        </form>        
-        <br />
-        <br />
+        </form>
     </div>
+        </form>
+        <br />
+        <br />
+    
 <div class="text-center">
     <button class="backButton" onclick="window.location.href='https://localhost:44331/Index';">Back</button><button class="continueButton" onclick="window.location.href='https://localhost:44331/CC2';">Continue</button>
 </div>
 <div>
     @{
-
+        
         CookieOptions options = new CookieOptions();
         options.Expires = DateTime.Now.AddYears(50);
-
+        /*
+        string strStat = HttpContext.Request.Query["strStat"].ToString();
+        string dexStat = HttpContext.Request.Query["dexStat"].ToString();
+        string conStat = HttpContext.Request.Query["conStat"].ToString();
+        string intStat = HttpContext.Request.Query["intStat"].ToString();
+        string wisStat = HttpContext.Request.Query["wisStat"].ToString();
+        string chaStat = HttpContext.Request.Query["chaStat"].ToString();
+        */
         string nameInput = HttpContext.Request.Query["Name"].ToString();
         string raceInput = HttpContext.Request.Query["selectRace"].ToString();
         string classInput = HttpContext.Request.Query["selectClass"].ToString();
@@ -122,7 +135,7 @@
             sizeInput = "medium";
         }
 
-        string CC1Data = "_name:" + nameInput + "," + "_race:" + raceInput + "," + "_class:" + classInput + "," + "_maxHP:" + maxHPInput + "," + "_currHP:" + currHPInput + "," + "_bg:" + bgInput + "," + "_al:" + alInput + "," + "_size:" + sizeInput;
+        string CC1Data = /*"_str:" + strStat + ",_dex:" + dexStat + ",_con:" + conStat + ",_int:" + intStat + ",_wis:" + wisStat + ",_cha:" + chaStat + */",_name:" + nameInput + "," + "_race:" + raceInput + "," + "_class:" + classInput + "," + "_maxHP:" + maxHPInput + "," + "_currHP:" + currHPInput + "," + "_bg:" + bgInput + "," + "_al:" + alInput + "," + "_size:" + sizeInput;
 
         Response.Cookies.Append("CC1Data", CC1Data, options);
         

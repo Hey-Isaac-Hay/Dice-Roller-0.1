@@ -6,19 +6,58 @@
     <div class="text-center">
         <h1 id="CCTitle">Character Creator</h1>
     </div>
+
+    <label for="Stats">Input your stats in order from 1-30</label>
+    <br />
+    <input type="text" id="Stats" name="strStat" runat="server">
+    <input type="text" id="Stats" name="dexStat" runat="server">
+    <input type="text" id="Stats" name="conStat" runat="server">
+    <input type="text" id="Stats" name="intStat" runat="server">
+    <input type="text" id="Stats" name="wisStat" runat="server">
+    <input type="text" id="Stats" name="chaStat" runat="server">
+    <br />
+
+    <label for="maxHP">Input your Max HP</label>
+    <input type="text" id="maxHP" name="maxHP" runat="server">
+    <br />
+
+    <label for="currHP">Input your Current HP</label>
+    <input type="text" id="currHP" name="currHP" runat="server">
+    <br />
+
+    <form asp-page-handler="TEST" method="post">
+        <!--Test receive method-->
+        <button>TEST</button>
+    </form>
 </form>
-<form asp-page-handler="TEST" method="post">
-    <!--Test receive method-->
-    <button>TEST</button>
-</form>
+
+
+
+@{
+    string strStat = HttpContext.Request.Query["strStat"].ToString();
+    string dexStat = HttpContext.Request.Query["dexStat"].ToString();
+    string conStat = HttpContext.Request.Query["conStat"].ToString();
+    string intStat = HttpContext.Request.Query["intStat"].ToString();
+    string wisStat = HttpContext.Request.Query["wisStat"].ToString();
+    string chaStat = HttpContext.Request.Query["chaStat"].ToString();
+
+    string tempStorage = "_str:" + strStat + ",_dex:" + dexStat + ",_con:" + conStat + ",_int:" + intStat + ",_wis:" + wisStat + ",_cha:" + chaStat;
+
+    
+    //Console.WriteLine(tempStorage + Request.Cookies["CC1Data"]);
+    ViewData["CC2Char"] = tempStorage + Request.Cookies["CC1Data"];
+}
+
+
+
 <!--<form asp-page-handler="buttonTest" method"post">
     <button type="button">Display Character Data</button>
-</form>-->
+</form>
 <p>@ViewData["charBob"]</p>
 <p>Redirected Cookie Data - @Request.Cookies["CC1Data"]</p>
 
 @{
-    string? value = Request.Cookies["CC1Data"];
+    //string? value = Request.Cookies["CC1Data"];
 
 }
-
+-->

@@ -21,12 +21,18 @@ button{
     background-color: grey;
     border-width: 3px;
     border-radius: 12px;
+    border-radius: 12px;
 }
 
-.roundButton{
-    background-color: cornflowerblue;
-    border-width: 2px;
+#Stats{
+    background-color: dodgerblue;
+    border-width: 3px;
     border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    color: black;
+    font-weight: 500;
 }
 
 .submitButton {
