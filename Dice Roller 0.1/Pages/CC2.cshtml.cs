@@ -8,7 +8,18 @@ namespace Dice_Roller_0._1.Pages
     {
         public void OnGet()
         {
-            
+            int stat1 = fourDropLowest();
+            int stat2 = fourDropLowest();
+            int stat3 = fourDropLowest();
+            int stat4 = fourDropLowest();
+            int stat5 = fourDropLowest();
+            int stat6 = fourDropLowest();
+            ViewData["stat1"] = stat1;
+            ViewData["stat2"] = stat2;
+            ViewData["stat3"] = stat3;
+            ViewData["stat4"] = stat4;
+            ViewData["stat5"] = stat5;
+            ViewData["stat6"] = stat6;
         }
 
         public void OnPostTEST()
@@ -16,7 +27,7 @@ namespace Dice_Roller_0._1.Pages
 
             
             Character testChar = makeCharacter(ViewData["CC2Char"]!.ToString()!);
-            Console.WriteLine(testChar.getBg());
+            //Console.WriteLine(testChar.getBg());
             //Console.WriteLine("Made a(n) " + testChar.getRace() + " " + testChar.getClass());
             string encryptedChar = "_str:" + testChar.getStr() + ",_dex:" + testChar.getDex() + ",_con:" + testChar.getCon() + 
                 ",_int:" + testChar.getInt() + ",_wis:" + testChar.getWis() + ",_cha:" + testChar.getCha() + 
