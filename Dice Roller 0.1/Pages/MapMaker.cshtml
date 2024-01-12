@@ -1,0 +1,91 @@
+﻿@page
+@model Dice_Roller_0._1.Pages.MapMakerModel
+@{
+}
+@{
+    ViewData["Title"] = "Home page";
+    ViewData["isPost"] = "false";
+}
+
+<div class="text-center">
+
+    <form asp-page-handler="MakeMap" method="post">
+        <label for="rowsBox"> Rows: </label>
+        <label for="columnsBox"> Columns: </label> <br />
+        <input type="text" id="rowsBox " name="textRows" />
+        <input type="text" id="columnsBox " name="textColumns" /> <br />
+        <button>Create Table</button> <br />
+
+    </form>
+
+    <form asp-page-asp-page-handler="SetPicture" method="post">
+        <label for="rowsChange"> Row Position: </label>
+        <label for="columnsChange"> Column Position: </label>
+        <label for="pictureSet"> Tile Picture: </label> <br />
+        <input type="text" id="rowsChange" name="changeRows" />
+        <input type="text" id="columnsChange " name="changeColumns" />
+        <input type="text" id="pictureSet" name="picture" />
+        <button>Set The Tile at the Given Location</button> <br />
+    </form>
+
+
+
+</div>
+
+
+@{
+
+    if (ViewData["isPost"]!.ToString() == "true")
+    {   //Grab the Requested # of Rows and Columns
+        int R = Convert.ToInt32(Request.Form["textRows"]);
+        int C = Convert.ToInt32(Request.Form["textColumns"]);
+        ViewData["rows"] = Convert.ToInt32(Request.Form["textRows"]);
+        ViewData["columns"] = Convert.ToInt32(Request.Form["textColumns"]);
+
+        //Create the Map Object, and the List we'll use to Display it
+        Map original = new Map((int)ViewData["rows"]!, (int)ViewData["columns"]!);
+        List<Tile> og = new List<Tile>((int)ViewData["rows"]! * (int)ViewData["columns"]!);
+
+                //Creates a Table Using For Loops
+        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+            @{
+                //Number of Rows
+                for (int i = 0; i < (int)ViewData["rows"]!; i++)
+                {
+                    <tr>
+                        @{
+                            //Number of Columns
+                            for (int j = 0; j < (int)ViewData["columns"]!; j++)
+                            {
+                                <td> <img src=@original.getTileString(i, j, "picture") alt="image here" style="display:block; max-width:100px; max-height:100px;" /></td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </table>
+
+        if (ViewData["isPicture"]!.ToString() == "true")
+        {
+            original.setTileString(Convert.ToInt32(Request.Form["changeRows"]), Convert.ToInt32(Request.Form["changeColumns"]), "picture", Request.Form["picture"]);
+            //Creates a Table Using For Loops
+            <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                @{
+                    //Number of Rows
+                    for (int i = 0; i < (int)R; i++)
+                    {
+                        <tr>
+                            @{
+                                //Number of Columns
+                                for (int j = 0; j < (int)C; j++)
+                                {
+                                    <td> <img src=@original.getTileString(i, j, "picture") alt="image here" style="display:block; max-width:100px; max-height:100px;" /></td>
+                                }
+                            }
+                        </tr>
+                    }
+                }
+            </table>
+        }
+    }
+}

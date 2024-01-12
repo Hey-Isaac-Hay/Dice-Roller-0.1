@@ -8,18 +8,7 @@ namespace Dice_Roller_0._1.Pages
     {
         public void OnGet()
         {
-            int stat1 = fourDropLowest();
-            int stat2 = fourDropLowest();
-            int stat3 = fourDropLowest();
-            int stat4 = fourDropLowest();
-            int stat5 = fourDropLowest();
-            int stat6 = fourDropLowest();
-            ViewData["stat1"] = stat1;
-            ViewData["stat2"] = stat2;
-            ViewData["stat3"] = stat3;
-            ViewData["stat4"] = stat4;
-            ViewData["stat5"] = stat5;
-            ViewData["stat6"] = stat6;
+            
         }
 
         public void OnPostTEST()
@@ -88,89 +77,7 @@ namespace Dice_Roller_0._1.Pages
             return test;
         }
 
-        public int RollDice(int[] arr, int mod)
-        {   //Rolls all Dice in Array and adds the Mod
-            int sum = 0;
-            Random roll = new Random();
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                for (int j = 0; j < arr[i]; j++)
-                {
-                    //check which die type is being rolled
-                    if (i == 0)
-                    {//d4
-                        sum += roll.Next(1, 5);
-                        Console.WriteLine("Rolled d4");
-                    }
-                    else if (i == 1)
-                    {//d6
-                        sum += roll.Next(1, 7);
-                        Console.WriteLine("Rolled d6");
-                    }
-                    else if (i == 2)
-                    {//d8
-                        sum += roll.Next(1, 9);
-                        Console.WriteLine("Rolled d8");
-                    }
-                    else if (i == 3)
-                    {//d10
-                        sum += roll.Next(1, 11);
-                        Console.WriteLine("Rolled d10");
-                    }
-                    else if (i == 4)
-                    {//d10 (percentile)
-                        sum += (roll.Next(1, 11) * 10);
-                        Console.WriteLine("Rolled a d10 pct");
-                    }
-                    else if (i == 5)
-                    {//d12
-                        sum += roll.Next(1, 13);
-                        Console.WriteLine("Rolled a d12");
-                    }
-                    else if (i == 6)
-                    {//d20
-                        sum += roll.Next(1, 21);
-                        Console.WriteLine("Rolled a d20");
-                    }
-                }//roll loop
-            }//position loop
-
-            //add mod to sum
-            sum += mod;
-            //return rolled sum
-            return sum;
-        }
-
-
-        public int fourDropLowest()
-        {   //for creating stats
-            int[] four = { 0, 0, 0, 0, 0, 0, 0 };
-
-            //int logic
-            int hold = 0;
-            int low = 9999999;
-            int sum = 0;
-
-            for (int i = 0; i < 4; i++)
-            {   //Roll single d6
-                four[1] = 1;
-                hold = RollDice(four, 0);
-
-                //Add to total
-                sum += hold;
-
-                //Keep track of lowest value
-                if (hold < low)
-                    low = hold;
-            }
-
-            //Now drop lowest value
-            sum -= low;
-
-            //Return sum of dice rolls minus lowest value
-            return sum;
-        }
+       
 
 
 
@@ -224,6 +131,13 @@ namespace Dice_Roller_0._1.Pages
             //Console.WriteLine("Character strength: " +  str);
             return new int[] { str, dex, con, intel, wis, cha }; 
         }*/
+        public void OnPostStoreStats()
+        {
+            string tempStorage = "_str:" + ViewData["strStat"] + ",_dex:" + ViewData["dexStat"] + ",_con:" + ViewData["conStat"] + ",_int:" + ViewData["intStat"] + ",_wis:" + ViewData["wisStat"] + ",_cha:" + ViewData["chaStat"];
+
+            //Console.WriteLine(tempStorage + Request.Cookies["CC1Data"]);
+            ViewData["CC2Char"] = tempStorage + Request.Cookies["CC1Data"];
+        }
 
     }
 }
