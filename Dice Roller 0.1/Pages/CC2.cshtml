@@ -1,0 +1,18 @@
+﻿@page
+@model Dice_Roller_0._1.Pages.CC2Model
+@{
+}
+<form>
+    <div class="text-center">
+        <h1 id="CCTitle">Character Creator</h1>
+    </div>
+</form>
+<form asp-page-handler="TEST" method="post">
+    <!--Test receive method-->
+    <button>TEST</button>
+</form>
+<!--<form asp-page-handler="buttonTest" method"post">
+    <button type="button">Display Character Data</button>
+</form>-->
+<p>@ViewData["charBob"]</p>
+
