@@ -18,7 +18,33 @@ body {
 }
 
 button{
-    background-color: cornflowerblue;
+    background-color: grey;
+    border-width: 3px;
+    border-radius: 12px;
+    border-radius: 12px;
+}
+
+#Stats{
+    background-color: dodgerblue;
+    border-width: 3px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    color: black;
+    font-weight: 500;
+}
+
+.submitButton {
+    background-color: deepskyblue;
+}
+
+.backButton{
+    background-color: red;
+}
+
+.continueButton{
+    background-color: limegreen;
 }
 
 #CCTitle {
@@ -26,6 +52,3 @@ button{
     text-decoration: underline;
 }
 
-.submit {
-    background-color: cornflowerblue;
-}

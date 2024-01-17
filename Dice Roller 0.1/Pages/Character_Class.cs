@@ -199,21 +199,21 @@ public class Character
     }
 
     //gets or sets the background of the character
-    public string getBackground()
+    public string getBg()
     {
         return background;
     }
-    public void setBackground(string newBackground)
+    public void setBg(string newBackground)
     {
         background = newBackground;
     }
 
     //gets or sets the alignment of the character
-    public string getAlignment()
+    public string getAl()
     {
         return alignment;
     }
-    public void setAlignment(string newAlignment)
+    public void setAl(string newAlignment)
     {
         alignment = newAlignment;
     }
@@ -239,11 +239,11 @@ public class Character
     }
 
     //gets or sets the armor class of the character
-    public int getArmorClass()
+    public int getAC()
     {
         return armorClass;
     }
-    public void setArmorClass(int newArmorClass)
+    public void setAC(int newArmorClass)
     {
         armorClass = newArmorClass;
     }
@@ -279,13 +279,23 @@ public class Character
     }
 
     //gets or sets the health of the character
-    public int getcurrHP()
+    public int getCurrHP()
     {
         return currHP;
     }
-    public void takeDamage(int dmgDealt)
+    public void setCurrHP(int newHP)
     {
-        currHP -= dmgDealt;
+        currHP = newHP;
+    }
+
+    //gets or sets the max health of the character
+    public int getMaxHP()
+    {
+        return maxHP;
+    }
+    public void setMaxHP(int newHP)
+    {
+        maxHP = newHP;
     }
 
     //does a strength based attack
