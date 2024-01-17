@@ -3,7 +3,20 @@
 
 <body>
     @{
+        int[] test = { 10, 10, 10, 10, 10, 10 };
+        //Character bob = new Character(test, "human", "bard", "bob", "criminal", "LN");
 
+
+        CookieOptions CharacterCookie = new CookieOptions();
+        CharacterCookie.Expires = DateTime.Now.AddYears(99);
+        CharacterCookie.IsEssential = true;
+        CharacterCookie.Path = "/";
+
+        string charString = "stats(" + test.ToString() + "), race(";
+
+        //Name, Value, ObjectName
+        HttpContext.Response.Cookies.Append("CharacterCookie", "", CharacterCookie);
+        //race(human), class(bard), ...abilities(1,2,3,4,5)
     }
 </body>
 
