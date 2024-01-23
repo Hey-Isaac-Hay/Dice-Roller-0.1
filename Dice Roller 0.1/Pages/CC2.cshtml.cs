@@ -8,14 +8,22 @@ namespace Dice_Roller_0._1.Pages
     {
         public void OnGet()
         {
-            
+            Character testChar = makeCharacter(ViewData["CC1Char"]!.ToString()!);
+            //Console.WriteLine(testChar.getBg());
+            //Console.WriteLine("Made a(n) " + testChar.getRace() + " " + testChar.getClass());
+            string encryptedChar = "_str:" + testChar.getStr() + ",_dex:" + testChar.getDex() + ",_con:" + testChar.getCon() +
+                ",_int:" + testChar.getInt() + ",_wis:" + testChar.getWis() + ",_cha:" + testChar.getCha() +
+                ",_name:" + testChar.getName() + ",_race:" + testChar.getRace() + ",_class:" + testChar.getClass() +
+                ",_maxHP:" + testChar.getMaxHP() + ",_currHP:" + testChar.getCurrHP() + ",_bg:" + testChar.getBg() +
+                ",_al:" + testChar.getAl() + ",_size:" + testChar.getSize();
+            ViewData["CC2Display"] = encryptedChar;
         }
 
         public void OnPostTEST()
         {
 
             
-            Character testChar = makeCharacter(ViewData["CC2Char"]!.ToString()!);
+            Character testChar = makeCharacter(ViewData["CC1Char"]!.ToString()!);
             //Console.WriteLine(testChar.getBg());
             //Console.WriteLine("Made a(n) " + testChar.getRace() + " " + testChar.getClass());
             string encryptedChar = "_str:" + testChar.getStr() + ",_dex:" + testChar.getDex() + ",_con:" + testChar.getCon() + 

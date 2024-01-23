@@ -95,17 +95,17 @@
     <br />
 <div>
     @{
-        
+        /*
         CookieOptions options = new CookieOptions();
         options.Expires = DateTime.Now.AddYears(50);
-        /*
+        
         string strStat = HttpContext.Request.Query["strStat"].ToString();
         string dexStat = HttpContext.Request.Query["dexStat"].ToString();
         string conStat = HttpContext.Request.Query["conStat"].ToString();
         string intStat = HttpContext.Request.Query["intStat"].ToString();
         string wisStat = HttpContext.Request.Query["wisStat"].ToString();
         string chaStat = HttpContext.Request.Query["chaStat"].ToString();
-        */
+        
         string nameInput = HttpContext.Request.Query["Name"].ToString();
         string raceInput = HttpContext.Request.Query["selectRace"].ToString();
         string classInput = HttpContext.Request.Query["selectClass"].ToString();
@@ -124,10 +124,10 @@
             sizeInput = "medium";
         }
 
-        string CC1Data = /*"_str:" + strStat + ",_dex:" + dexStat + ",_con:" + conStat + ",_int:" + intStat + ",_wis:" + wisStat + ",_cha:" + chaStat + */",_name:" + nameInput + "," + "_race:" + raceInput + "," + "_class:" + classInput + "," + "_maxHP:" + maxHPInput + "," + "_currHP:" + currHPInput + "," + "_bg:" + bgInput + "," + "_al:" + alInput + "," + "_size:" + sizeInput;
+        string CC1Data = /*"_str:" + strStat + ",_dex:" + dexStat + ",_con:" + conStat + ",_int:" + intStat + ",_wis:" + wisStat + ",_cha:" + chaStat + ",_name:" + nameInput + "," + "_race:" + raceInput + "," + "_class:" + classInput + "," + "_maxHP:" + maxHPInput + "," + "_currHP:" + currHPInput + "," + "_bg:" + bgInput + "," + "_al:" + alInput + "," + "_size:" + sizeInput;
 
         Response.Cookies.Append("CC1Data", CC1Data, options);
-        
+        */
     }
     <p>@Request.Cookies["CC1Data"]</p>
 </div>
@@ -267,7 +267,7 @@
 <input type="text" id="currHP" name="currHP" runat="server">
 <br />
 <br />
-
+</div>
 <div class="container">
     <p>Strength:</p>
     <div id="stat1" draggable="true" class="box">@ViewData["stat1"]</div>
@@ -291,9 +291,10 @@
 
     <p>Charisma:</p>
     <div id="stat6" draggable="true" class="box">@ViewData["stat6"]</div>
-</div>
+
 <br />
 <br />
+
 
 <div>
     <form asp-page-handler="storeStats" method="post"><button onclick="storeStats()">Submit</button></form>
@@ -301,29 +302,46 @@
 
 <!--<div id="hiddenId" type="hidden"></div>-->
 
-@{
-    //string getID = HtmlHelper.Id("hidden");
-    /*
-    string strStat = HttpContext.Request.Query["strStat"].ToString();
-    string dexStat = HttpContext.Request.Query["dexStat"].ToString();
-    string conStat = HttpContext.Request.Query["conStat"].ToString();
-    string intStat = HttpContext.Request.Query["intStat"].ToString();
-    string wisStat = HttpContext.Request.Query["wisStat"].ToString();
-    string chaStat = HttpContext.Request.Query["chaStat"].ToString();
-    */
-    //if (Convert.ToBoolean(ViewData["statToggle"]))
-    //{
+    @{
+        //string getID = HtmlHelper.Id("hidden");
+        /*
+        string strStat = HttpContext.Request.Query["strStat"].ToString();
+        string dexStat = HttpContext.Request.Query["dexStat"].ToString();
+        string conStat = HttpContext.Request.Query["conStat"].ToString();
+        string intStat = HttpContext.Request.Query["intStat"].ToString();
+        string wisStat = HttpContext.Request.Query["wisStat"].ToString();
+        string chaStat = HttpContext.Request.Query["chaStat"].ToString();
+        */
+        //if (Convert.ToBoolean(ViewData["statToggle"]))
+        //{
+        //}
+        CookieOptions options = new CookieOptions();
+        options.Expires = DateTime.Now.AddYears(50);
 
+        string nameInput = HttpContext.Request.Query["Name"].ToString();
+        string raceInput = HttpContext.Request.Query["selectRace"].ToString();
+        string classInput = HttpContext.Request.Query["selectClass"].ToString();
+        string maxHPInput = HttpContext.Request.Query[""].ToString();
+        string currHPInput = HttpContext.Request.Query[""].ToString();
+        string bgInput = HttpContext.Request.Query["selectBackground"].ToString();
+        string alInput = HttpContext.Request.Query["selectAlignment"].ToString();
+        string sizeInput = HttpContext.Request.Query["selectRace"].ToString();
 
+        if (sizeInput.Equals("halfling") || sizeInput.Equals("gnome"))
+        {
+            sizeInput = "small";
+        }
+        else
+        {
+            sizeInput = "medium";
+        }
 
+        string CC1Data = /*"_str:" + strStat + ",_dex:" + dexStat + ",_con:" + conStat + ",_int:" + intStat + ",_wis:" + wisStat + ",_cha:" + chaStat + */",_name:" + nameInput + "," + "_race:" + raceInput + "," + "_class:" + classInput + "," + "_maxHP:" + maxHPInput + "," + "_currHP:" + currHPInput + "," + "_bg:" + bgInput + "," + "_al:" + alInput + "," + "_size:" + sizeInput;
 
-
-
-    //}
-
-
-}
+        Response.Cookies.Append("CC1Data", CC1Data, options);
+        ViewData["CC1Char"] = Request.Cookies["CC1Data"];
+    }
 </div>
 <div class="text-center">
-    <button class="backButton" onclick="window.location.href='https://localhost:44331/Index';">Back</button><button class="continueButton" onclick="window.location.href='https://localhost:44331/CC2';">Continue</button>
+    <button class="backButton" onclick="window.location.href='Index';">Back</button><button class="continueButton" onclick="window.location.href='CC2';">Continue</button>
 </div>
