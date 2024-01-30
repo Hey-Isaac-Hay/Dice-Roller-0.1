@@ -97,14 +97,14 @@
             stats[counter] = item.innerHTML;
             counter++;
         });
-        /*
-        alert(stats[0]);
-        alert(stats[1]);
-        alert(stats[2]);
-        alert(stats[3]);
-        alert(stats[4]);
-        alert(stats[5]);
-        */
+
+        alert("Your strength stat is: " + stats[0]);
+        alert("Your dexterity stat is: " + stats[1]);
+        alert("Your constitution stat is: " + stats[2]);
+        alert("Your intelligence stat is: " + stats[3]);
+        alert("Your wisdom stat is: " + stats[4]);
+        alert("Your charisma stat is: " + stats[5]);
+
 
         
     }
@@ -117,7 +117,7 @@
 </head>
 
 <h1 id="CCTitle" class="text-center">Character Creator</h1>
-
+<!--
 <form asp-page-handler="TEST" method="post">
        
     
@@ -131,7 +131,7 @@
     Test receive method
     <button>TEST</button>
 </form>
-
+-->
 <br />
 <br />
 
@@ -159,13 +159,19 @@
     <p>Charisma:</p>
     <div id="stat6" draggable="true" class="box">@ViewData["stat6"]</div>
 </div>
+<br />
 <div>
-    <button onclick="printId()">Submit</button>
+    <button onclick="printId()">Submit and Display Stats</button>
 </div>
+<br />
 <div>
-    <p>@ViewData["stat1"]</p>
+    <h2>Character Info</h2>
+    <p>@Request.Cookies["CC1Data"]</p>
 </div>
-
+<br />
+<div class="text-center">
+    <button class="backButton" onclick="window.location.href='/CC1';">Back</button><button class="continueButton" onclick="window.location.href='/MapMaker';">Continue</button>
+</div>
 @{
     /*
     string strStat = HttpContext.Request.Query["strStat"].ToString();

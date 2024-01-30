@@ -92,15 +92,15 @@
         <label for="selectAlignment">Choose an Alignment:</label>
         <select id="selectAlignment" name="selectAlignment" runat="server">
             <option value="">Choose an Alignment</option>
-            <option value="lg">Lawful Good</option>
-            <option value="ln">Lawful Neutral</option>
-            <option value="le">Lawful Evil</option>
-            <option value="ng">Neutral Good</option>
-            <option value="tn">True Neutral</option>
-            <option value="ne">Neutral Evil</option>
-            <option value="cg">Chaotic Good</option>
-            <option value="cn">Chaotic Neutral</option>
-            <option value="ce">Chaotic Evil</option>
+            <option value="LG">Lawful Good</option>
+            <option value="LN">Lawful Neutral</option>
+            <option value="LE">Lawful Evil</option>
+            <option value="NG">Neutral Good</option>
+            <option value="TN">True Neutral</option>
+            <option value="NE">Neutral Evil</option>
+            <option value="CG">Chaotic Good</option>
+            <option value="CN">Chaotic Neutral</option>
+            <option value="CE">Chaotic Evil</option>
         </select>
         <br />
         <br />
@@ -115,13 +115,14 @@
         <br />
     
 <div class="text-center">
-    <button class="backButton" onclick="window.location.href='https://localhost:44331/Index';">Back</button><button class="continueButton" onclick="window.location.href='https://localhost:44331/CC2';">Continue</button>
+    <button class="backButton" onclick="window.location.href='/Index';">Back</button><button class="continueButton" onclick="window.location.href='/CC2';">Continue</button>
 </div>
 <div>
     @{
-        
+
         CookieOptions options = new CookieOptions();
         options.Expires = DateTime.Now.AddYears(50);
+        string CC1Data = "";
         /*
         string strStat = HttpContext.Request.Query["strStat"].ToString();
         string dexStat = HttpContext.Request.Query["dexStat"].ToString();
@@ -148,10 +149,12 @@
             sizeInput = "medium";
         }
 
-        string CC1Data = /*"_str:" + strStat + ",_dex:" + dexStat + ",_con:" + conStat + ",_int:" + intStat + ",_wis:" + wisStat + ",_cha:" + chaStat + */",_name:" + nameInput + "," + "_race:" + raceInput + "," + "_class:" + classInput + "," + "_maxHP:" + maxHPInput + "," + "_currHP:" + currHPInput + "," + "_bg:" + bgInput + "," + "_al:" + alInput + "," + "_size:" + sizeInput;
-
-        Response.Cookies.Append("CC1Data", CC1Data, options);
-        
+        if (!nameInput.Equals(""))
+        {
+            //CC1Data = /*"_str:" + strStat + ",_dex:" + dexStat + ",_con:" + conStat + ",_int:" + intStat + ",_wis:" + wisStat + ",_cha:" + chaStat + */",_name:" + nameInput + "," + "_race:" + raceInput + "," + "_class:" + classInput + "," + "_maxHP:" + maxHPInput + "," + "_currHP:" + currHPInput + "," + "_bg:" + bgInput + "," + "_al:" + alInput + "," + "_size:" + sizeInput;
+            CC1Data = "You made a character named " + nameInput + " that is a(n) " + raceInput + " " + classInput + " who is a(n) " + bgInput + " and a " + alInput + " alignment.";
+            Response.Cookies.Append("CC1Data", CC1Data, options);
+        }
     }
-    <p>@Request.Cookies["CC1Data"]</p>
+   <!-- <p>@Request.Cookies["CC1Data"]</p> -->
 </div>
