@@ -2,10 +2,12 @@
 @model Dice_Roller_0._1.Pages.CC2Model
 @{
     ViewData["strStat"] = "";
+    ViewData["Title"] = "Stats and Character Info";
 }
 <head>
 <style>
     .container {
+            
     }
 
     .box {
@@ -117,6 +119,8 @@
 </head>
 
 <h1 id="CCTitle" class="text-center">Character Creator</h1>
+<br />
+<h4>Drag and drop numbers to preferred stats</h4>
 <!--
 <form asp-page-handler="TEST" method="post">
        
@@ -132,8 +136,7 @@
     <button>TEST</button>
 </form>
 -->
-<br />
-<br />
+
 
 <div class="container">
     <p>Strength:</p>
@@ -159,13 +162,14 @@
     <p>Charisma:</p>
     <div id="stat6" draggable="true" class="box">@ViewData["stat6"]</div>
 </div>
+
 <br />
 <div>
     <button onclick="printId()">Submit and Display Stats</button>
 </div>
 <br />
 <div>
-    <h2>Character Info</h2>
+    <h4>Character Info</h4>
     <p>@Request.Cookies["CC1Data"]</p>
 </div>
 <br />

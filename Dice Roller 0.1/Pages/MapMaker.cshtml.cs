@@ -15,7 +15,8 @@ namespace Dice_Roller_0._1.Pages
 
         public void OnPostMakeMap()
         {
-            ViewData["isPost"] = "true";
+                ViewData["isPost"] = "true";
+
         }
     }
 }

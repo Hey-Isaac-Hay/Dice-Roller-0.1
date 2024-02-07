@@ -3,7 +3,7 @@
 @{
 }
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Realm Builder";
 }
 
 <h1 id="CCTitle">Realm Designer</h1>
@@ -13,8 +13,10 @@
     <form asp-page-handler="MakeMap" method="post">
         <label for="rowsBox"> Rows: </label>
         <label for="columnsBox"> Columns: </label> <br />
-        <input type="text" id="rowsBox " name="textRows" />
-        <input type="text" id="columnsBox " name="textColumns" /> <br />
+        <input type="text" pattern="^[0-9]*$" id="rowsBox " name="textRows" />
+        <input type="text" pattern="^[0-9]*$" id="columnsBox " name="textColumns" />
+        <!--<input type="text" id="rowsBox " name="textRows" />
+        <input type="text" id="columnsBox " name="textColumns" /> <br />-->
         <button>Create Realm</button> <br />
 
     </form>
@@ -22,7 +24,8 @@
 
 
 </div>
-
+<br>
+<br>
 
 @{
 
@@ -37,7 +40,7 @@
         Map original = new Map((int)ViewData["rows"]!, (int)ViewData["columns"]!);
         //List<Tile> og = new List<Tile>((int)ViewData["rows"]! * (int)ViewData["columns"]!);
 
-                //Creates a Table Using For Loops
+        //Creates a Table Using For Loops
         <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
             @{
                 //Number of Rows
@@ -57,7 +60,8 @@
         </table>
     }
 }
-
+<br />
+<br />
 <div class="text-center">
     <button class="backButton" onclick="window.location.href='/CC2';">Back</button><button class="continueButton" onclick="window.location.href='/Index';">Home</button>
 </div>

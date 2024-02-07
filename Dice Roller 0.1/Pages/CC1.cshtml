@@ -1,11 +1,12 @@
 ﻿@page
 @model Dice_Roller_0._1.Pages.CC1Model
 @{
-
+    ViewData["Title"] = "Character Creator";
 }
 <body>
     @{
-        int[] test = { 10, 10, 10, 10, 10, 10 };
+        /*
+         * int[] test = { 10, 10, 10, 10, 10, 10 };
         //Character bob = new Character(test, "human", "bard", "bob", "criminal", "LN");
 
 
@@ -19,6 +20,7 @@
         //Name, Value, ObjectName
         HttpContext.Response.Cookies.Append("CharacterCookie", "", CharacterCookie);
         //race(human), class(bard), ...abilities(1,2,3,4,5)
+        */
     }
 </body>
 <form>
@@ -30,7 +32,31 @@
         <input type="text" id="Name" name="Name" runat="server">
         <br />  
         <br />
-        
+        <style>
+            aside{
+                position: fixed;
+                border-radius: 20px;
+                right:150px;
+                width:25%;
+                padding:20px;
+                margin:10px;
+                font-style: italic;
+                background-color: lightgray;
+            }
+        </style>
+        <aside>
+            <h4>Notes:</h4>
+            A <strong>Class</strong> is what type of adventurer your character is so it determines if you hit things with a sword or cast spells
+            <br>
+            <br>
+            Your <strong>Race</strong> determines what type of creature you are. Are you a human, elf, or maybe even part dragon? 
+            <br>
+            <br>
+            Your <strong>Background</strong> is what your life was like before your character started adventuring, this may be a job or the way you lived
+            <br>
+            <br>
+            Your <strong>Alignment</strong> is your character's nature. It helps you figure out what your character would do in a situation.
+        </aside>
 
         <h2>Class</h2>
         <!--Dropdown list to select from all classes-->
@@ -103,6 +129,8 @@
             <option value="CE">Chaotic Evil</option>
         </select>
         <br />
+        <br />
+        <h4>Click Submit then Continue</h4>
         <br />
         <form asp-page-handler="Complete" method="post">
             <!--Submit button that saves selected class in a variable-->
