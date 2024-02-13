@@ -135,15 +135,30 @@
         <form asp-page-handler="Complete" method="post">
             <!--Submit button that saves selected class in a variable-->
             <!--<input type="submit" value="Submit" class="submit" />-->
-            <button class="submitButton">Submit</button>
+            
+            
         </form>
     </div>
         </form>
-        <br />
-        <br />
+        
     
 <div class="text-center">
-    <button class="backButton" onclick="window.location.href='/Index';">Back</button><button class="continueButton" onclick="window.location.href='/CC2';">Continue</button>
+    <button class="backButton" onclick="window.location.href='/Index';">Back</button>
+    @{
+        if (Convert.ToBoolean(ViewData["IsPost"]) == false)
+        {
+            <form method="post">
+                <button type="submit" class="submitButton">Submit</button>
+            </form>
+            
+        }
+
+
+        if (Convert.ToBoolean(ViewData["IsPost"]) == true)
+        {
+            <button class="continueButton" onclick="window.location.href='/CC2';">Continue</button>
+        }
+    }
 </div>
 <div>
     @{

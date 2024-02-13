@@ -18,6 +18,13 @@ namespace Dice_Roller_0._1.Pages
             ViewData["charBob"] = Request.Cookies["charCookie"];
 
             //Console.WriteLine(Request.Cookies["charCookie"]);
+
+            ViewData["IsPost"] = false;
+        }
+
+        public void OnPost()
+        {
+            ViewData["IsPost"] = true;
         }
 
         //race(human), class(bard), ...abilities(1,2,3,4,5)
