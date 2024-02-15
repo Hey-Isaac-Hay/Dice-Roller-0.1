@@ -18,5 +18,10 @@ namespace Dice_Roller_0._1.Pages
                 ViewData["isPost"] = "true";
 
         }
+
+        public void OnPost()
+        {
+
+        }
     }
 }
