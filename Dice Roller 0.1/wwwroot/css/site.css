@@ -19,9 +19,14 @@ body {
 
 button{
     background-color: grey;
-    border-width: 3px;
-    border-radius: 12px;
-    border-radius: 12px;
+    border-radius: 16px;
+    border:0px;
+    padding:10px;
+    padding-top:6px;
+    padding-bottom:6px;
+    color:#fdfefe;
+    font-weight:500;
+    margin:5px;
 }
 
 #Stats{
@@ -36,15 +41,15 @@ button{
 }
 
 .submitButton {
-    background-color: deepskyblue;
+    background-color: #41a6ef;
 }
 
 .backButton{
-    background-color: red;
+    background-color: #FF3131;
 }
 
 .continueButton{
-    background-color: limegreen;
+    background-color: #00bf63;
 }
 
 #CCTitle {

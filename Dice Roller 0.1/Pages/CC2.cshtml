@@ -2,35 +2,57 @@
 @model Dice_Roller_0._1.Pages.CC2Model
 @{
     ViewData["strStat"] = "";
-    ViewData["Title"] = "Stats and Character Info";
+    ViewData["Title"] = "Stats";
 }
 <head>
+    <script src="site.js"></script>
 <style>
     .container {
             
     }
 
+     aside {
+        position: fixed;
+        border-radius: 20px;
+        right: 175px;
+        width: 35%;
+        padding: 20px;
+        font-style: italic;
+        background-color: lightgray;
+        float: right;
+        height:287px;
+        
+    }
+
+    #statsBox{
+        border-radius: 20px;
+        padding: 20px;
+        width:600px;
+        height:240px;
+        background-color: #004aad;
+    }
+
     .box {
         border: 3px solid;
         border-color: #052f5f;
-        background-color: #79a9d1;
+        background-color: #5271ff;
         border-radius: 50%;
-        padding: 10px;
         width: 50px;
+        padding:10px;
         height: 50px;
         cursor: move;
         text-align: center;
-        color: #000000;
+        color:#fdfefe;
         font-weight: 500;
+        margin:19px;
     }
 
     .box.over {
         border: 3px dotted darkblue;
     }
-</style>
+    </style>
 
 <script type="text/javascript">
-    
 
     document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -66,14 +88,15 @@
         }
 
         function handleDrop(e) {
+            e.preventDefault();
             e.stopPropagation();
 
-            if (dragSrcEl !== this) {
-                dragSrcEl.innerHTML = this.innerHTML;
-                this.innerHTML = e.dataTransfer.getData('text/html');
-            }
+                if (dragSrcEl !== this) {
+                    dragSrcEl.innerHTML = this.innerHTML;
+                    this.innerHTML = e.dataTransfer.getData('text/html');
+                }
 
-            this.classList.remove('over');
+                this.classList.remove('over');
 
             return false;
         }
@@ -93,11 +116,13 @@
     function printId() {
         let stats = new Array(6);
         //document.querySelector('.box').innerHTML
-        let items = document.querySelectorAll('.container .box');
+        let items = document.querySelectorAll('.selectedStats .box');
         let counter = 0;
         items.forEach(function (item) {
-            stats[counter] = item.innerHTML;
-            counter++;
+            if(item.innerHTML != ""){
+                stats[counter] = item.innerHTML;
+                counter++;
+            }
         });
 
         alert("Your strength stat is: " + stats[0]);
@@ -106,21 +131,115 @@
         alert("Your intelligence stat is: " + stats[3]);
         alert("Your wisdom stat is: " + stats[4]);
         alert("Your charisma stat is: " + stats[5]);
-
-
-        
     }
+    
+    function fourDropLowest(){
+        //rolls stats for you and automatically drops the lowest number
+        let low = 9999;
+        let hold, sum;
+
+        //generates the stats
+        for(let i=0; i<4; i++){
+            hold = Math.floor(Math.random() * 6) + 1;
+
+            sum += hold;
+
+            //finds the lowest and stores the value
+            if(hold < low)
+                low = hold;
+        }
+
+        //drops the lowest
+        sum -= low;
+
+        return sum;
+    }
+    //-------Creates the stats for the drag and drop stuff
+    if(sessionStorage.getItem("started") == "0"){
+        sessionStorage.setItem("stat1", fourDropLowest());
+        sessionStorage.setItem("stat1", fourDropLowest());
+        sessionStorage.setItem("stat2", fourDropLowest());
+        sessionStorage.setItem("stat3", fourDropLowest());
+        sessionStorage.setItem("stat4", fourDropLowest());
+        sessionStorage.setItem("stat5", fourDropLowest());
+        sessionStorage.setItem("stat6", fourDropLowest());
+    }
+
+
+    
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";domain=.localhost:44331;path=/";
+    }
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+    /*
+    function checkCookie() {
+        if (sessionStorage.arrive = 0){
+            sessionStorage.arrive = 1;
+            setCookie("stat1", fourDropLowest(), 1);
+            setCookie("stat2", fourDropLowest(), 1);
+            setCookie("stat3", fourDropLowest(), 1);
+            setCookie("stat4", fourDropLowest(), 1);
+            setCookie("stat5", fourDropLowest(), 1);
+            setCookie("stat6", fourDropLowest(), 1);
+        }
+        document.getElementById("stat1").innerHTML = getCookie("stat1");
+        document.getElementById("stat2").innerHTML = getCookie("stat2");
+        document.getElementById("stat3").innerHTML = getCookie("stat3");
+        document.getElementById("stat4").innerHTML = getCookie("stat4");
+        document.getElementById("stat5").innerHTML = getCookie("stat5");
+        document.getElementById("stat6").innerHTML = getCookie("stat6");
+    }
+   
+    checkCookie();
+    */
+
 </script>
 
     @{
         int[] stats = new int[6];
         
     }
-</head>
-
+</head> 
 <h1 id="CCTitle" class="text-center">Character Creator</h1>
+
 <br />
+<p id="info" style="width:400px">Recommendations not loading...</p>
+<aside class="text-left" style="float: right">
+    <h4>What are Stats?</h4>
+    <p> Your <strong> Stats </strong> are a representation of your aptitude in different characteristics of adventuring</p>
+    <p>
+        To understand what they are, consider the famous tomato analogy:
+        <br />
+
+        <strong>Strength (STR)</strong> is how far you can throw a tomato/easily crush a tomato (physical might)<br>
+        <strong>Dexterity (DEX)</strong> is how accurately you can throw a tomato/dodge a tomato (nimbleness)<br>
+        <strong>Constitution (CON)</strong> is how well you can handle eating a crate of tomatos (hardiness)<br>
+        <strong>Intelligence (INT)</strong> is knowing that tomato is a fruit (book knowledge)<br>
+        <strong>Wisdom (WIS)</strong> is knowing that tomato does not go on a fruit salad (applying knowledge)<br>
+        <strong>Charisma (CHA)</strong> is how well you can sell a rotten tomato (social influence)
+    </p>
+</aside>
+
 <h4>Drag and drop numbers to preferred stats</h4>
+
+
 <!--
 <form asp-page-handler="TEST" method="post">
        
@@ -137,45 +256,70 @@
 </form>
 -->
 
-
-<div class="container">
-    <p>Strength:</p>
-    <div id="stat1" draggable="true" class="box">@ViewData["stat1"]</div>
+<div id="statsBox" style="">
+    <div class="container text-center">
+        <div id="stat1" draggable="true" class="box" style="float:left">@ViewData["stat1"]</div>
+        <div id="stat2" draggable="true" class="box" style="float:left">@ViewData["stat2"]</div>
+        <div id="stat3" draggable="true" class="box" style="float:left">@ViewData["stat3"]</div>
+        <div id="stat4" draggable="true" class="box" style="float:left">@ViewData["stat4"]</div>
+        <div id="stat5" draggable="true" class="box" style="float:left">@ViewData["stat5"]</div>
+        <div id="stat6" draggable="true" class="box" style="float:left">@ViewData["stat6"]</div>
+    </div>
     <br />
-
-    <p>Dexterity:</p>
-    <div id="stat2" draggable="true" class="box">@ViewData["stat2"]</div>
     <br />
-
-    <p>Constitution:</p>
-    <div id="stat3" draggable="true" class="box">@ViewData["stat3"]</div>
     <br />
+    <div style="font-weight:500;color:#fdfefe">
+        <div style="float:left;margin-left:40px;margin-right:25px">STR:</div>
 
-    <p>Intelligence:</p>
-    <div id="stat4" draggable="true" class="box">@ViewData["stat4"]</div>
-    <br />
+        <div style="float:left;margin-left:30px;margin-right:30px">DEX:</div>
 
-    <p>Wisdom:</p>
-    <div id="stat5" draggable="true" class="box">@ViewData["stat5"]</div>
-    <br />
+        <div style="float:left;margin-left:25px;margin-right:25px">CON:</div>
 
-    <p>Charisma:</p>
-    <div id="stat6" draggable="true" class="box">@ViewData["stat6"]</div>
+        <div style="float:left;margin-left:27px;margin-right:25px">INT:</div>
+
+        <div style="float:left;margin-left:30px;margin-right:25px">WIS:</div>
+
+        <div style="float:left;margin-left:30px;margin-right:25px">CHA:</div>
+    </div>
+    <div class="container selectedStats">
+
+
+        <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
+
+
+
+        <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
+
+
+
+        <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
+
+
+
+        <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
+
+
+
+        <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
+
+
+
+        <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
+    </div>
 </div>
 
+
 <br />
+<br>
+<br />
+
 <div>
     <button onclick="printId()">Submit and Display Stats</button>
 </div>
-<br />
-<div>
-    <h4>Character Info</h4>
-    <p>@Request.Cookies["CC1Data"]</p>
-</div>
-<br />
 <div class="text-center">
-    <button class="backButton" onclick="window.location.href='/CC1';">Back</button><button class="continueButton" onclick="window.location.href='/MapMaker';">Continue</button>
+    <button class="backButton" onclick="window.location.href='/CC_CR';">Back</button><button class="continueButton" onclick="window.location.href='/CC_BA';">Continue</button>
 </div>
+
 @{
     /*
     string strStat = HttpContext.Request.Query["strStat"].ToString();
@@ -192,3 +336,53 @@
     ViewData["CC2Char"] = tempStorage + Request.Cookies["CC1Data"];
     */
 }
+<script>
+    var params = new URLSearchParams(location.search);
+
+    function checkCookie() {
+        let user = getCookie("username");
+        if (user != "") {
+            alert("Welcome again " + user);
+        } else {
+            user = prompt("Please enter your name:", "");
+            if (user != "" && user != null) {
+                setCookie("username", user, 365);
+            }
+        }
+    }
+
+    if (params.get("selectClass") != null && params.get("selectClass") != "")
+        localStorage.setItem("class", params.get("selectClass"));
+
+    if (params.get("selectRace") != null && params.get("selectRace") != "")
+        localStorage.setItem("race", params.get("selectRace"));
+
+    if (localStorage.getItem("class") == "barbarian") {
+        document.getElementById("info").innerHTML = "Since you chose the barbarian class, we highly recommend that your highest stat be strength and your second highest be constitution.";
+    } else if (localStorage.getItem("class") == "bard") {
+        document.getElementById("info").innerHTML = "Since you chose the bard class, we highly recomment that your highest stat be charisma and your second highest be dexterity or constitution";
+    } else if (localStorage.getItem("class") == "cleric") {
+        document.getElementById("info").innerHTML = "Since you chose the cleric class, we highly recommend that your highest stat be wisdom and your second highest be charisma or constitution.";
+    } else if (localStorage.getItem("class") == "druid") {
+        document.getElementById("info").innerHTML = "Since you chose the druid class, we highly recommend that your highest stat be wisdom and your second highest be constitution or intelligence.";
+    } else if (localStorage.getItem("class") == "fighter") {
+        document.getElementById("info").innerHTML = "Since you chose the fighter class, we highly recommend that your highest stat be strength or dexterity and your second highest be constitution.";
+    } else if (localStorage.getItem("class") == "monk") {
+        document.getElementById("info").innerHTML = "Since you chose the monk class, we highly recommend that your highest stat be dexterity and your second highest be strength.";
+    } else if (localStorage.getItem("class") == "paladin") {
+        document.getElementById("info").innerHTML = "Since you chose the paladin class, we highly recommend that your highest stat be strength and your second highest be charisma.";
+    } else if (localStorage.getItem("class") == "ranger") {
+        document.getElementById("info").innerHTML = "Since you chose the ranger class, we highly recommend that your highest stat be dexterity and your second highest be wisdom.";
+    } else if (localStorage.getItem("class") == "rogue") {
+        document.getElementById("info").innerHTML = "Since you chose the rogue class, we highly recommend that your highest stat be dexterity and your second highest be intelligence or charisma.";
+    } else if (localStorage.getItem("class") == "sorcerer") {
+        document.getElementById("info").innerHTML = "Since you chose the sorcerer class, we highly recommend that your highest stat be charisma and your second highest be constitution.";
+    } else if (localStorage.getItem("class") == "warlock") {
+        document.getElementById("info").innerHTML = "Since you chose the warlock class, we highly recommend that your highest stat be charisma and your second highest be Wisdom.";
+    } else if (localStorage.getItem("class") == "wizard") {
+        document.getElementById("info").innerHTML = "Since you chose the wizard class, we highly recommend that your highest stat be intelligence and your second highest be constitution or wisdom.";
+    } else{
+        document.getElementById("info").innerHTML = "Choose a class on the previous page and we will give a suggestion on how to arrange your stats.";
+    }
+    
+</script>

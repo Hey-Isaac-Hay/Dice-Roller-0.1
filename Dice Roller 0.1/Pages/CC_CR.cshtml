@@ -1,0 +1,228 @@
+﻿@page
+@model Dice_Roller_0._1.Pages.CC1Model
+@{
+    ViewData["Title"] = "Character Creator";
+}
+<style>
+    aside {
+        position: fixed;
+        border-radius: 20px;
+        right: 150px;
+        width: 30%;
+        padding: 30px;
+        margin: 10px;
+        font-style: italic;
+        background-color: lightgray;
+        float: right;
+        font-size: 14px;
+        text-align:left;
+    }
+
+    #classInfo {
+        float: left;
+        right: 0px;
+        left: 150px;
+    }
+
+    table, tr, td {
+        padding: 5px;
+        margin: 5px;
+        border-width: 2px;
+        border-color: black;
+        background-color: gray;
+        color: black;
+    }
+
+    table {
+        margin: auto;
+    }
+</style>
+
+<form method="get" action="/CC2">
+    <div class="text-center">
+    <aside id="classInfo" class="text-left">
+        <h4>What is a Class?</h4>
+        A <strong>Class</strong> is what type of adventurer your character is so it determines if you hit things with a sword or cast spells. <br>
+        Many Classes can cast magic, which is a major thing to consider when picking your class. There are three subsets of classes: <br> <br>
+
+        <strong><u style="font-size:18px">Casters</u></strong> - Have full access to magic and gain spells at a normal pace <br>
+
+        <strong>Bard</strong> - Bards use the magic of song to support allies and control the world around them <br>
+        <strong>Cleric</strong> - Clerics use magic given to them by the divine to heal allies and punish foes <br>
+        <strong>Druid</strong> - Druids use the power of nature to cast magic and shapeshift into animals <br>
+        <strong>Sorcerer</strong> - Sorcerers use their innate magical abilities to attack foes from afar and support the party<br>
+        <strong>Warlock</strong> - Through pacts made with the divine to gain access to magic to fight foes <br>
+        <strong>Wizard</strong> - Through lifelong devotion to study, Wizards have mastered the arcane arts to become the most diverse caster.  <br> <br>
+
+        <strong><u style="font-size:18px">Half-Casters</u></strong> - Have access to magic but gain spells at a slower pace <br>
+
+        <strong>Paladin</strong> - Paladins use the magic given to them by the divine to supplement their heroic actions on and off the battlefield<br>
+        <strong>Ranger</strong> - Rangers use the magic of nature to aid their survival and hunting skills in the wild<br> <br>
+
+        <strong><u style="font-size:18px">Martials</u></strong> - Use their skills to thrive in the world without needing magic <br>
+
+        <strong>Barbarian</strong> - Barbarians use their anger to fuel their mighty hits and tank many cuts <br>
+        <strong>Fighter</strong> - Fighters are experienced combatants and are experts at dealing damage from afar and up close <br>
+        <strong>Rogue</strong> - Rogues hide in the shadows and make the most of their opportunities to hit enemies where it hurts most <br>
+        <strong>Monk</strong> -  Monks use their extreme speed to manuever through opponents and their ki to empower their skills <br>
+    </aside>
+        <aside class="text-left">
+            <h4>What is a Race?</h4>
+            Your <strong>Race</strong> determines what type of creature you are. Are you a human, elf, or maybe even part dragon? The great part is, you get to decide!
+            You can decide based on personal preference, or by the way in which the race affects your character's stats. Depending on the race, your character gets
+            certain bonuses for different stats. Below is a guide for how each race affects your stats:
+            <br />
+            <br />
+            <table>
+                <tr>
+                    <td>Race:</td>
+                    <td>Bonuses:</td>
+                    <td>Subraces:</td>
+                </tr>
+                <tr>
+                    <td>Dwarf</td>
+                    <td>Con+2</td>
+                    <td>Hill(Wis+1)<br />Mountain(Str+2)</td>
+                </tr>
+                <tr>
+                    <td>Elf</td>
+                    <td>Dex+2</td>
+                    <td>High Elf(Int+1)<br />Wood Elf(Wis+1)<br>Dark Elf(Cha+1)</td>
+
+                </tr>
+                <tr>
+                    <td>Halfling</td>
+                    <td>Dex+2</td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <td>Human</td>
+                    <td>All+1</td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <td>Dragonborn</td>
+                    <td>Str+2, Cha+1</td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <td>Gnome</td>
+                    <td>Int+2</td>
+                    <td>Forest(Dex+1)<br />Rock(Con+1)</td>
+                </tr>
+                <tr>
+                    <td>Half-Elf</td>
+                    <td>Cha+2, Two Custom Stats+1</td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <td>Half-Orc</td>
+                    <td>Str+2, Con+1</td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <td>Tiefling</td>
+                    <td>Int+1, Cha+2</td>
+                    <td>---</td>
+                </tr>
+            </table>
+        </aside>
+        <h1 id="CCTitle">Character Creator</h1>
+        
+        <h2>Name</h2>
+        <!--Text Box Input for Name-->
+        <label for="Name">Choose a Name</label>
+        <input type="text" id="Name" name="Name" runat="server">
+        <br />  
+        <br />
+        
+        <h2>Class</h2>
+        <!--Dropdown list to select from all classes-->
+            <label for="selectClass">Choose a Class:</label>
+            <select id="selectClass" name="selectClass" runat="server">
+                <option value="">Choose a Class</option>
+                <option value="barbarian">Barbarian</option>
+                <option value="bard">Bard</option>
+                <option value="cleric">Cleric</option>
+                <option value="druid">Druid</option>
+                <option value="fighter">Fighter</option>
+                <option value="monk">Monk</option>
+                <option value="paladin">Paladin</option>
+                <option value="ranger">Ranger</option>
+                <option value="rogue">Rogue</option>
+                <option value="sorcerer">Sorcerer</option>
+                <option value="warlock">Warlock</option>
+                <option value="wizard">Wizard</option>
+            </select>
+            <br />
+        <h2>Race</h2>
+        <!--Dropdown list to select from all races-->
+            <label for="selectRace">Choose a Race:</label>
+            <select id="selectRace" name="selectRace" runat="server">
+                <option value="">Choose a Race</option>
+                <option value="dwarf">Dwarf</option>
+                <option value="elf">Elf</option>
+                <option value="halfling">Halfling</option>
+                <option value="human">Human</option>
+                <option value="dragonborn">Dragonborn</option>
+                <option value="gnome">Gnome</option>
+                <option value="halfElf">Half-Elf</option>
+                <option value="halfOrc">Half-Orc</option>
+                <option value="tiefling">Tiefling</option>
+            </select>
+            <br />
+        
+        <br />
+        <br />
+        <h4>Click Submit then Continue</h4>
+        <br />
+        <!--Submit button that saves selected class in a variable-->
+        <button type="submit" class="submitButton">Submit</button>
+        <button class="backButton" onclick="window.location.href='/Index';">Back</button>
+    </div>
+        </form>
+        
+    
+<div class="text-center">
+    
+</div>
+<div>
+    @{
+
+        CookieOptions options = new CookieOptions();
+        options.Expires = DateTime.Now.AddYears(50);
+        string CC1Data = "";
+        /*
+        string strStat = HttpContext.Request.Query["strStat"].ToString();
+        string dexStat = HttpContext.Request.Query["dexStat"].ToString();
+        string conStat = HttpContext.Request.Query["conStat"].ToString();
+        string intStat = HttpContext.Request.Query["intStat"].ToString();
+        string wisStat = HttpContext.Request.Query["wisStat"].ToString();
+        string chaStat = HttpContext.Request.Query["chaStat"].ToString();
+        */
+        string nameInput = HttpContext.Request.Query["Name"].ToString();
+        string raceInput = HttpContext.Request.Query["selectRace"].ToString();
+        string classInput = HttpContext.Request.Query["selectClass"].ToString();
+
+
+        if (!nameInput.Equals(""))
+        {
+            //CC1Data = /*"_str:" + strStat + ",_dex:" + dexStat + ",_con:" + conStat + ",_int:" + intStat + ",_wis:" + wisStat + ",_cha:" + chaStat + */",_name:" + nameInput + "," + "_race:" + raceInput + "," + "_class:" + classInput + "," + "_maxHP:" + maxHPInput + "," + "_currHP:" + currHPInput + "," + "_bg:" + bgInput + "," + "_al:" + alInput + "," + "_size:" + sizeInput;
+            CC1Data = "You made a character named " + nameInput + " that is a(n) " + raceInput + " " + classInput;
+            Response.Cookies.Append("CRCookie", CC1Data, options);
+        }
+    }
+   <!-- <p>@Request.Cookies["CC1Data"]</p> -->
+</div>
+<!--puts the footer lower on the page-->
+<br>
+<br />
+<br />
+<br />
+<br />
+<br>
+<br />
+<br />
+<br />
+<br />
+<br>

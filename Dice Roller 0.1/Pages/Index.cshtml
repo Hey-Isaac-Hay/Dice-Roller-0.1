@@ -4,23 +4,17 @@
     ViewData["Title"] = "Realm Builder Home";
 
 }
+
+<script>
+    if(sessionStorage.getItem("started") != "1")
+        sessionStorage.setItem("started", "0");
+
+</script>
+
 <div class="text-center">
     <img src="/images/Realm Builder Logo.png" width="750">
     <p>
         <!--<button onclick="window.location.href='https://localhost:44331/CC1';">Create a Character</button>-->
-        <button onclick="window.location.href='/CC1';">Create a Character</button>
+        <button onclick="window.location.href='/CC_CR';">Create a Character</button>
     </p>
 </div>
-
-
-<!--<form action="https://localhost:44331/CC1">
-    <label for="character">Choose a Class:</label>
-    <select id = "character" name = "character">
-        <option value="barbarian">Barbarian</option>
-        <option value="bard">Bard</option>
-        <option value="cleric">Cleric</option>
-        <option value="druid">Druid</option>
-    </select>
-    <br />
-    <input type="submit" value="Submit"/>
-</form>-->

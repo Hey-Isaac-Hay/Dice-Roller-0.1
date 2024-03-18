@@ -1,0 +1,95 @@
+﻿@page
+@model Dice_Roller_0._1.Pages.CC_sub1Model
+@{
+    ViewData["Title"] = "Character Creator";
+}
+
+<style>
+    aside {
+        position: fixed;
+        border-radius: 20px;
+        right: 150px;
+        width: 30%;
+        padding: 30px;
+        margin: 10px;
+        font-style: italic;
+        background-color: lightgray;
+        float: right;
+        font-size: 14px;
+        text-align: left;
+    }
+</style>
+
+<!-- Temporarily sends you to MapMaker-->
+<form method="get" action="/MapMaker">
+    <h1> Choose Two <strong> DIFFERENT </strong> Proficiencies from the lists</h1>
+
+    <script>
+        alert('hello?');
+        const sel = document.createElement("select");
+        document.body.appendChild(sel);
+        const op1 = document.createElement("option");
+        op1.innerText = "Choose First Proficiency";
+        sel.appendChild(op1);
+
+        if (localStorage.getItem("class") == "barbarian") {
+            makeOption("Animal Handling", "anmlH");
+            makeOption("Athletics", "athletics");
+            makeOption("Intimidation", "intimidation");
+            makeOption("Nature", "nature");
+            makeOption("Perception", "perception");
+            makeOption("Survival", "survival");
+
+        } else if (localStorage.getItem("class") == "bard") {
+
+        } else if (localStorage.getItem("class") == "cleric") {
+
+        } else if (localStorage.getItem("class") == "fighter") {
+
+        } else if (localStorage.getItem("class") == "monk") {
+
+        } else if (localStorage.getItem("class") == "paladin") {
+
+        } else if (localStorage.getItem("class") == "ranger") {
+
+        } else if (localStorage.getItem("class") == "rogue") {
+
+        } else if (localStorage.getItem("class") == "sorcerer") {
+
+        } else if (localStorage.getItem("class") == "warlock") {
+
+        } else if (localStorage.getItem("class") == "wizard") {
+
+        } else {
+
+        }
+        
+        function makeOption(text, val) {
+            const op = document.createElement("option");
+            op.innerText = text;
+            op.setAttribute("value", val);
+            sel.appendChild(op);
+        }
+    </script>
+</form>
+<!--
+        <select id="prof1" name = "prof1" runat = "server" >
+            <option value = "">Choose First Proficiency</option>
+            <option value = "anmlH">Animal Handling</option>
+            <option value = "athletics" > Athletics </option>
+            <option value = "intimidation" > Intimidation </option>
+            <option value = "nature">Nature</option>
+            <option value = "perception">Perception</option>
+            <option value = "survival" >Survival</option>
+        </select>
+        <select id="prof2" name = "prof2" runat = "server" >
+            <option value = "" > Choose Second Proficiency </option>
+            <option value = "anmlH" > Animal Handling </option>   
+            <option value = "athletics" > Athletics </option>
+            <option value = "intimidation" > Intimidation </option>
+            <option value = "nature" > Nature </option>
+            <option value = "perception" > Perception </option>
+            <option value = "survival" > Survival </option>
+        </select>
+
+        -->

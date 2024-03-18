@@ -1,0 +1,158 @@
+﻿@page
+@model Dice_Roller_0._1.Pages.CC_BAModel
+@{
+    ViewData["Title"] = "Character Creator";
+}
+<!--<script src="site.js"></script>
+<button onclick="document.getElementById('demo').innerHTML = getCookie('selectClass')"></button>
+<p id="demo"></p>
+-->
+<style>
+
+    aside {
+        position: fixed;
+        border-radius: 20px;
+        right: 150px;
+        width: 27%;
+        padding: 30px;
+        margin: 10px;
+        font-style: italic;
+        background-color: lightgray;
+        float: right;
+        
+    }
+
+    #bgInfo {
+        float: left;
+        right: 0px;
+        left: 150px;
+    }
+
+    table, tr, td {
+        padding: 5px;
+        margin: 5px;
+        border-width: 2px;
+        border-color: black;
+        background-color: gray;
+        color: black;
+    }
+
+    table {
+        margin: auto;
+    }
+</style>
+
+<form method="get" action="/CC_sub1">
+    <div class="text-center">
+    <h1 id="CCTitle">Character Creator</h1>
+        <aside id="bgInfo">
+            <h4>What is a Background?</h4>
+            Your <strong>Background</strong> is what your life was like before your character started adventuring, this may be a job or the way you lived <br>
+            They provide you with some known languages, skills you excell at, and starting gear - Don't worry too much about optimization, pick what you think fits the idea of your character!
+        </aside>
+        <aside>
+            <h4>What is an Alignment?</h4>
+            Your <strong>Alignment</strong> is your character's nature. It helps you figure out what your character would do in a situation <br>
+            <strong>Good - Neutral - Evil</strong> is a range of morality. How much does your character value the common good, for example <br>
+            <strong>Lawful - Neutral - Chaotic</strong> is a range of acting. Does your character follow a moral code, or do they do the first thing that comes to mind
+        </aside>
+        
+    <h2>Background</h2>
+    <!--Dropdown List to select from all backgrounds-->
+    <label for="selectBackground">Choose a Background:</label>
+    <select id="selectBackground" name="selectBackground" runat="server">
+        <option value="">Choose a Background</option>
+        <option value="acolyte">Acolyte</option>
+        <option value="charlatan">Charlatan</option>
+        <option value="criminal">Criminal</option>
+        <option value="entertainer">Entertainer</option>
+        <option value="folk-hero">Folk Hero</option>
+        <option value="guild-artisan">Guild Artisan</option>
+        <option value="hermit">Hermit</option>
+        <option value="noble">Noble</option>
+        <option value="outlander">Outlander</option>
+        <option value="sage">Sage</option>
+        <option value="sailor">Sailor</option>
+        <option value="soldier">Soldier</option>
+        <option value="urchin">Urchin</option>
+    </select>
+    <br />
+    <h2>Alignment</h2>
+    <!--Dropdown List to select from all alignments-->
+    <label for="selectAlignment">Choose an Alignment:</label>
+    <select id="selectAlignment" name="selectAlignment" runat="server">
+        <option value="">Choose an Alignment</option>
+        <option value="LG">Lawful Good</option>
+        <option value="LN">Lawful Neutral</option>
+        <option value="LE">Lawful Evil</option>
+        <option value="NG">Neutral Good</option>
+        <option value="TN">True Neutral</option>
+        <option value="NE">Neutral Evil</option>
+        <option value="CG">Chaotic Good</option>
+        <option value="CN">Chaotic Neutral</option>
+        <option value="CE">Chaotic Evil</option>
+    </select>
+
+    <h4>Click Submit then Continue</h4>
+    <br />
+        <!--Submit button that saves selected class in a variable-->
+        <!--<input type="submit" value="Submit" class="submit" />-->
+        <button type="submit" class="submitButton">Submit</button>
+
+        <button class="backButton" onclick="window.location.href='/CC2';">Back</button>
+    </div>
+    </form>
+    <div class="text-center">
+        
+    </div>
+
+    <div>
+
+</div>
+
+<script>
+    //var params = new URLSearchParams(location.search);
+
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    setCookie("cookieName", "cookieValue", 1);
+    getCookie("cookieName");
+
+    if (params.get("selectBackground") != null && params.get("selectBackground") != "")
+        setCookie("background", params.get("selectBackground"), 2);
+
+    if (params.get("selectAlignment") != null && params.get("selectAlignment") != "")
+        setCookie("alignment", params.get("selectAlignment"), 2);
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function checkCookie() {
+        let user = getCookie("username");
+        if (user != "") {
+            alert("Welcome again " + user);
+        } else {
+            user = prompt("Please enter your name:", "");
+            if (user != "" && user != null) {
+                setCookie("username", user, 365);
+            }
+        }
+    }
+</script>
