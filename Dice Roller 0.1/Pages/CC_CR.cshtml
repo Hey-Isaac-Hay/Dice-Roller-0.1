@@ -177,43 +177,14 @@
         <h4>Click Submit then Continue</h4>
         <br />
         <!--Submit button that saves selected class in a variable-->
-        <button type="submit" class="submitButton">Submit</button>
-        <button class="backButton" onclick="window.location.href='/Index';">Back</button>
+        <button type="submit" class="submitButton" onclick="storeInfo()">Submit</button>
+        
     </div>
         </form>
-        
-    
 <div class="text-center">
-    
+    <button class="backButton" onclick="window.location.href='/Index';">Back</button>
 </div>
-<div>
-    @{
 
-        CookieOptions options = new CookieOptions();
-        options.Expires = DateTime.Now.AddYears(50);
-        string CC1Data = "";
-        /*
-        string strStat = HttpContext.Request.Query["strStat"].ToString();
-        string dexStat = HttpContext.Request.Query["dexStat"].ToString();
-        string conStat = HttpContext.Request.Query["conStat"].ToString();
-        string intStat = HttpContext.Request.Query["intStat"].ToString();
-        string wisStat = HttpContext.Request.Query["wisStat"].ToString();
-        string chaStat = HttpContext.Request.Query["chaStat"].ToString();
-        */
-        string nameInput = HttpContext.Request.Query["Name"].ToString();
-        string raceInput = HttpContext.Request.Query["selectRace"].ToString();
-        string classInput = HttpContext.Request.Query["selectClass"].ToString();
-
-
-        if (!nameInput.Equals(""))
-        {
-            //CC1Data = /*"_str:" + strStat + ",_dex:" + dexStat + ",_con:" + conStat + ",_int:" + intStat + ",_wis:" + wisStat + ",_cha:" + chaStat + */",_name:" + nameInput + "," + "_race:" + raceInput + "," + "_class:" + classInput + "," + "_maxHP:" + maxHPInput + "," + "_currHP:" + currHPInput + "," + "_bg:" + bgInput + "," + "_al:" + alInput + "," + "_size:" + sizeInput;
-            CC1Data = "You made a character named " + nameInput + " that is a(n) " + raceInput + " " + classInput;
-            Response.Cookies.Append("CRCookie", CC1Data, options);
-        }
-    }
-   <!-- <p>@Request.Cookies["CC1Data"]</p> -->
-</div>
 <!--puts the footer lower on the page-->
 <br>
 <br />
@@ -226,3 +197,15 @@
 <br />
 <br />
 <br>
+
+
+<script>
+    function storeInfo(){
+        if (document.getElementById("Name").value != "" || document.getElementById("Name").value != null)
+            localStorage.setItem("name", document.getElementById("Name").value);
+        if (document.getElementById("selectClass").value != "" || document.getElementById("selectClass").value != null)
+            localStorage.setItem("class", document.getElementById("selectClass").value);
+        if (document.getElementById("selectRace").value != "" || document.getElementById("selectRace").value != null)
+            localStorage.setItem("race", document.getElementById("selectRace").value);
+    }
+</script>

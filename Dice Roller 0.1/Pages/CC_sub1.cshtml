@@ -8,7 +8,7 @@
     aside {
         position: fixed;
         border-radius: 20px;
-        right: 150px;
+        right: 50px;
         width: 30%;
         padding: 30px;
         margin: 10px;
@@ -18,78 +18,338 @@
         font-size: 14px;
         text-align: left;
     }
+    td, tr{
+        padding:10px;
+    }
 </style>
+<div class="text-center">
 
 <!-- Temporarily sends you to MapMaker-->
-<form method="get" action="/MapMaker">
-    <h1> Choose Two <strong> DIFFERENT </strong> Proficiencies from the lists</h1>
-
+<form method="get" action="/CCItems">
+    <h1> Choose <strong> DIFFERENT </strong> Proficiencies from the lists</h1>
+    <aside id="profInfo" class="text-left">
+            <h4>What are Proficiencies?</h4>
+            Proficiencies are skills that your character has specialized in. During the game, you will roll to attempt certain actions<br>
+            For every skill, you receive a bonus equal to your <strong> modifier</strong> in the corresponding stat -- which is (Stat Value - 10)/2<br>
+            When you are proficient in the skill you are attempting, you will receive an extra bonus depending on your level<br>
+            <br>
+            <table>
+                <tr>
+                    <td>Stat:</td>
+                    <td>STR:</td>
+                    <td>DEX:</td>
+                    <td>INT:</td>
+                    <td>WIS:</td>
+                    <td>CHA:</td>
+                </tr>
+                <tr>
+                    <td>Proficiencies: </td>
+                    <td>
+                        Athletics
+                    </td>
+                    <td>
+                        Acrobatics<br>
+                        Stealth
+                    </td>
+                    <td>
+                        Arcana<br>
+                        History<br>
+                        Investigation<br>
+                        Nature<br>
+                        Religion
+                    </td>
+                    <td>
+                        Animal Handling<br>
+                        Insight<br>
+                        Medicine<br>
+                        Perception<br>
+                        Survival
+                    </td>
+                    <td>
+                        Deception<br>
+                        Intimidation<br>
+                        Performance<br>
+                        Persuasion
+                    </td>
+                </tr>
+               
+                
+            </table>
+        </aside>
+        <p id="bgInfo"></p>
+    
+    <button type="submit" class="submitButton" onclick="storeInfo()">Submit</button>
     <script>
-        alert('hello?');
-        const sel = document.createElement("select");
-        document.body.appendChild(sel);
-        const op1 = document.createElement("option");
-        op1.innerText = "Choose First Proficiency";
-        sel.appendChild(op1);
+        //Create a select object
+        //Give it an id, and append it to the body
+        const sel1 = document.createElement("select");
+        sel1.setAttribute("id", "select1");
+        document.body.appendChild(sel1);
 
+        const sel2 = document.createElement("select");
+        sel2.setAttribute("id", "select2");
+        document.body.appendChild(sel2);
+
+        const sel3 = document.createElement("select");
+        sel3.setAttribute("id", "select3");
+        document.body.appendChild(sel3);
+        sel3.style.display = "none";
+
+        const sel4 = document.createElement("select");
+        sel4.setAttribute("id", "select4");
+        document.body.appendChild(sel4);
+        sel4.style.display = "none";
+
+        //Create the first option
+        //Append it to the matching select object
+        const op1_1 = document.createElement("option");
+        op1_1.innerText = "Choose First Proficiency";
+        sel1.appendChild(op1_1);
+        
+        const op1_2 = document.createElement("option");
+        op1_2.innerText = "Choose Second Proficiency";
+        sel2.appendChild(op1_2);
+
+        const op1_3 = document.createElement("option");
+        op1_3.innerText = "Choose Third Proficiency";
+        sel3.appendChild(op1_3);
+
+        const op1_4 = document.createElement("option");
+        op1_4.innerText = "Choose Fourth Proficiency";
+        sel4.appendChild(op1_4);
+
+        //Check for the class
+        //Use makeOption to create options
+        //and append them to the correct number of select objects
         if (localStorage.getItem("class") == "barbarian") {
-            makeOption("Animal Handling", "anmlH");
-            makeOption("Athletics", "athletics");
-            makeOption("Intimidation", "intimidation");
-            makeOption("Nature", "nature");
-            makeOption("Perception", "perception");
-            makeOption("Survival", "survival");
-
-        } else if (localStorage.getItem("class") == "bard") {
+            makeOption("Animal Handling", "anmlH", 2);
+            makeOption("Athletics", "athletics", 2);
+            makeOption("Intimidation", "intimidation", 2);
+            makeOption("Nature", "nature", 2);
+            makeOption("Perception", "perception", 2);
+            makeOption("Survival", "survival", 2);
 
         } else if (localStorage.getItem("class") == "cleric") {
+            makeOption("History", "history", 2);
+            makeOption("Insight", "insight", 2);
+            makeOption("Medicine", "medicine", 2);
+            makeOption("Persuasion", "persuasion", 2);
+            makeOption("Religion", "religion", 2);
+
+        } else if (localStorage.getItem("class") == "druid"){
+            makeOption("Animal Handling", "anmlH", 2);
+            makeOption("Arcana", "arcana", 2);
+            makeOption("Insight", "insight", 2);
+            makeOption("Medicine", "medicine", 2);
+            makeOption("Nature", "nature", 2);
+            makeOption("Perception", "perception", 2);
+            makeOption("Religion", "religion", 2);
+            makeOption("Survival", "survival", 2);
 
         } else if (localStorage.getItem("class") == "fighter") {
+            makeOption("Acrobatics", "acrobatics", 2);
+            makeOption("Animal Handling", "anmlH", 2);
+            makeOption("Athletics", "athletics", 2);
+            makeOption("History", "history", 2);
+            makeOption("Insight", "insight", 2);
+            makeOption("Intimidation", "intimidation", 2);
+            makeOption("Perception", "perception", 2);
+            makeOption("Survival", "survival", 2);
 
         } else if (localStorage.getItem("class") == "monk") {
+            makeOption("Acrobatics", "acrobatics", 2);
+            makeOption("Athletics", "athletics", 2);
+            makeOption("History", "history", 2);
+            makeOption("Insight", "insight", 2);
+            makeOption("Religion", "religion", 2);
+            makeOption("Stealth", "stealth", 2);
 
         } else if (localStorage.getItem("class") == "paladin") {
-
-        } else if (localStorage.getItem("class") == "ranger") {
-
-        } else if (localStorage.getItem("class") == "rogue") {
+            makeOption("Athletics", "athletics", 2);
+            makeOption("Insight", "insight", 2);
+            makeOption("Intimidation", "intimidation", 2);
+            makeOption("Medicine", "medicine", 2);
+            makeOption("Persuasion", "persuasion", 2);
+            makeOption("Religion", "religion", 2);
 
         } else if (localStorage.getItem("class") == "sorcerer") {
+            makeOption("Arcana", "arcana", 2);
+            makeOption("Deception", "deception", 2);
+            makeOption("Insight", "insight", 2);
+            makeOption("Intimidation", "intimidation", 2);
+            makeOption("Persuasion", "persuasion", 2);
+            makeOption("Religion", "religion", 2);
 
         } else if (localStorage.getItem("class") == "warlock") {
+            makeOption("Arcana", "arcana", 2);
+            makeOption("Deception", "deception", 2);
+            makeOption("History", "history", 2);
+            makeOption("Intimidation", "intimidation", 2);
+            makeOption("Investigation", "investigation", 2);
+            makeOption("Nature", "nature", 2);
+            makeOption("Religion", "religion", 2);
 
         } else if (localStorage.getItem("class") == "wizard") {
-
+            makeOption("Arcana", "arcana", 2);
+            makeOption("History", "history", 2);
+            makeOption("Insight", "insight", 2);
+            makeOption("Investigation", "investigation", 2);
+            makeOption("Medicine", "medicine", 2);
+            makeOption("Religion", "religion", 2);
+        //Otherwise, it is a class with 3 or 4 proficiencies
         } else {
+            sel3.style.display = "inline";
 
+            if (localStorage.getItem("class") == "bard") {
+                makeOption("Acrobatics", "acrobatics", 3);
+                makeOption("Animal Handling", "anmlH", 3);
+                makeOption("Arcana", "arcana", 3);
+                makeOption("Athletics", "athletics", 3);
+                makeOption("Deception", "deception", 3);
+                makeOption("History", "history", 3);
+                makeOption("Insight", "insight", 3);
+                makeOption("Intimidation", "intimidation", 3);
+                makeOption("Investigation", "investigation", 3);
+                makeOption("Medicine", "medicine", 3);
+                makeOption("Nature", "nature", 3);
+                makeOption("Perception", "perception", 3);
+                makeOption("Performance", "performance", 3);
+                makeOption("Persuasion", "persuasion", 3);
+                makeOption("Religion", "religion", 3);
+                makeOption("Sleight of Hand", "slghtfH", 3);
+                makeOption("Stealth", "stealth", 3);
+                makeOption("Survival", "survival", 3);
+
+            } else if (localStorage.getItem("class") == "ranger") {
+                makeOption("Animal Handling", "anmlH", 3);
+                makeOption("Athletics", "athletics", 3);
+                makeOption("Insight", "insight", 3);
+                makeOption("Investigation", "investigation", 3);
+                makeOption("Nature", "nature", 3);
+                makeOption("Perception", "perception", 3);
+                makeOption("Stealth", "stealth", 3);
+                makeOption("Survival", "survival", 3);
+
+              //Otherwise, they are a rogue with 4 proficiencies
+            } else {
+                sel4.style.display = "inline";
+
+                makeOption("Acrobatics", "acrobatics", 4);
+                makeOption("Athletics", "athletics", 4);
+                makeOption("Deception", "deception", 4);
+                makeOption("Insight", "insight", 4);
+                makeOption("Intimidation", "intimidation", 4);
+                makeOption("Investigation", "investigation", 4);
+                makeOption("Perception", "perception", 4);
+                makeOption("Performance", "performance", 4);
+                makeOption("Persuasion", "persuasion", 4);
+                makeOption("Sleight of Hand", "slghtfH", 4);
+                makeOption("Stealth", "stealth", 4);
+            }
         }
         
-        function makeOption(text, val) {
-            const op = document.createElement("option");
-            op.innerText = text;
-            op.setAttribute("value", val);
-            sel.appendChild(op);
+        //Make option objects and append them
+        //to the correct number of select tags
+        function makeOption(text, val, num) {
+            
+            if (num == 1)
+            {
+                const op1 = document.createElement("option");
+                op1.innerText = text;
+                op1.setAttribute("value", val);
+                sel1.appendChild(op1);
+
+            } else if (num == 2) {
+                const op1 = document.createElement("option");
+                op1.innerText = text;
+                op1.setAttribute("value", val);
+                sel1.appendChild(op1);
+
+                const op2 = document.createElement("option");
+                op2.innerText = text;
+                op2.setAttribute("value", val);
+                sel2.appendChild(op2);
+
+            } else if (num == 3) {
+                const op1 = document.createElement("option");
+                op1.innerText = text;
+                op1.setAttribute("value", val);
+                sel1.appendChild(op1);
+
+                const op2 = document.createElement("option");
+                op2.innerText = text;
+                op2.setAttribute("value", val);
+                sel2.appendChild(op2);
+
+                const op3 = document.createElement("option");
+                op3.innerText = text;
+                op3.setAttribute("value", val);
+                sel3.appendChild(op3);
+
+            } else if (num == 4) {
+                const op1 = document.createElement("option");
+                op1.innerText = text;
+                op1.setAttribute("value", val);
+                sel1.appendChild(op1);
+
+                const op2 = document.createElement("option");
+                op2.innerText = text;
+                op2.setAttribute("value", val);
+                sel2.appendChild(op2);
+
+                const op3 = document.createElement("option");
+                op3.innerText = text;
+                op3.setAttribute("value", val);
+                sel3.appendChild(op3);
+
+                const op4 = document.createElement("option");
+                op4.innerText = text;
+                op4.setAttribute("value", val);
+                sel4.appendChild(op4);
+            }
         }
+
+        //Grabs values from the Select Objects
+        function storeInfo(){
+            localStorage.setItem("prof1", document.getElementById("select1").value);
+            localStorage.setItem("prof2", document.getElementById("select2").value);
+            if (document.getElementById("select3").value != "Choose Third Proficiency")
+               localStorage.setItem("prof3", document.getElementById("select3").value);
+            if (document.getElementById("select4").value != "Choose Fourth Proficiency")
+                localStorage.setItem("prof4", document.getElementById("select4").value);
+        }
+
+            if (localStorage.getItem("bg") == "acolyte") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the acolyte background, you automatically get proficiencies in Insight and Religion.";
+            } else if (localStorage.getItem("bg") == "charlatan") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the charlatan background, you automatically get proficiencies in Deception and Sleight of Hand.";
+            } else if (localStorage.getItem("bg") == "criminal") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the criminal background, you automatically get proficiencies in Deception and Stealth.";
+            } else if (localStorage.getItem("bg") == "entertainer") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the entertainer background, you automatically get proficiencies in Acrobatics and Performance.";
+            } else if (localStorage.getItem("bg") == "folk-hero") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the folk hero background, you automatically get proficiencies in Animal Handling and Survival.";
+            } else if (localStorage.getItem("bg") == "guild-artisan") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the acolyte background, you automatically get proficiencies in Insight and Religion.";
+            } else if (localStorage.getItem("bg") == "paladin") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the paladin class, we highly recommend that your highest stat be strength and your second highest be charisma.";
+            } else if (localStorage.getItem("bg") == "ranger") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the ranger class, we highly recommend that your highest stat be dexterity and your second highest be wisdom.";
+            } else if (localStorage.getItem("bg") == "rogue") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the rogue class, we highly recommend that your highest stat be dexterity and your second highest be intelligence or charisma.";
+            } else if (localStorage.getItem("bg") == "sorcerer") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the sorcerer class, we highly recommend that your highest stat be charisma and your second highest be constitution.";
+            } else if (localStorage.getItem("bg") == "warlock") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the warlock class, we highly recommend that your highest stat be charisma and your second highest be Wisdom.";
+            } else if (localStorage.getItem("bg") == "wizard") {
+                document.getElementById("bgInfo").innerHTML = "Since you chose the wizard class, we highly recommend that your highest stat be intelligence and your second highest be constitution or wisdom.";
+            } else {
+                document.getElementById("bgInfo").innerHTML = "Choose a class on the previous page and we will give a suggestion on how to arrange your stats.";
+            }
     </script>
 </form>
-<!--
-        <select id="prof1" name = "prof1" runat = "server" >
-            <option value = "">Choose First Proficiency</option>
-            <option value = "anmlH">Animal Handling</option>
-            <option value = "athletics" > Athletics </option>
-            <option value = "intimidation" > Intimidation </option>
-            <option value = "nature">Nature</option>
-            <option value = "perception">Perception</option>
-            <option value = "survival" >Survival</option>
-        </select>
-        <select id="prof2" name = "prof2" runat = "server" >
-            <option value = "" > Choose Second Proficiency </option>
-            <option value = "anmlH" > Animal Handling </option>   
-            <option value = "athletics" > Athletics </option>
-            <option value = "intimidation" > Intimidation </option>
-            <option value = "nature" > Nature </option>
-            <option value = "perception" > Perception </option>
-            <option value = "survival" > Survival </option>
-        </select>
+</div>
+<div class="text-center">
+    <button class="backButton" style="margin:auto;" onclick="window.location.href='/CC_BA';">Back</button>
+</div>
 
-        -->

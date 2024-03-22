@@ -1,7 +1,6 @@
 ﻿@page
 @model Dice_Roller_0._1.Pages.CC2Model
 @{
-    ViewData["strStat"] = "";
     ViewData["Title"] = "Stats";
 }
 <head>
@@ -125,18 +124,27 @@
             }
         });
 
+        /*
         alert("Your strength stat is: " + stats[0]);
         alert("Your dexterity stat is: " + stats[1]);
         alert("Your constitution stat is: " + stats[2]);
         alert("Your intelligence stat is: " + stats[3]);
         alert("Your wisdom stat is: " + stats[4]);
         alert("Your charisma stat is: " + stats[5]);
+        */
+       localStorage.setItem("str", stats[0]);
+       localStorage.setItem("dex", stats[1]);
+       localStorage.setItem("con", stats[2]);
+       localStorage.setItem("int", stats[3]);
+       localStorage.setItem("wis", stats[4]);
+       localStorage.setItem("cha", stats[5]);
     }
     
     function fourDropLowest(){
         //rolls stats for you and automatically drops the lowest number
         let low = 9999;
-        let hold, sum;
+        let hold = 0;
+        let sum = 0;
 
         //generates the stats
         for(let i=0; i<4; i++){
@@ -154,17 +162,7 @@
 
         return sum;
     }
-    //-------Creates the stats for the drag and drop stuff
-    if(sessionStorage.getItem("started") == "0"){
-        sessionStorage.setItem("stat1", fourDropLowest());
-        sessionStorage.setItem("stat1", fourDropLowest());
-        sessionStorage.setItem("stat2", fourDropLowest());
-        sessionStorage.setItem("stat3", fourDropLowest());
-        sessionStorage.setItem("stat4", fourDropLowest());
-        sessionStorage.setItem("stat5", fourDropLowest());
-        sessionStorage.setItem("stat6", fourDropLowest());
-    }
-
+    
 
     
     function setCookie(cname, cvalue, exdays) {
@@ -258,12 +256,12 @@
 
 <div id="statsBox" style="">
     <div class="container text-center">
-        <div id="stat1" draggable="true" class="box" style="float:left">@ViewData["stat1"]</div>
-        <div id="stat2" draggable="true" class="box" style="float:left">@ViewData["stat2"]</div>
-        <div id="stat3" draggable="true" class="box" style="float:left">@ViewData["stat3"]</div>
-        <div id="stat4" draggable="true" class="box" style="float:left">@ViewData["stat4"]</div>
-        <div id="stat5" draggable="true" class="box" style="float:left">@ViewData["stat5"]</div>
-        <div id="stat6" draggable="true" class="box" style="float:left">@ViewData["stat6"]</div>
+        <div id="stat1" draggable="true" class="box" style="float:left"></div>
+        <div id="stat2" draggable="true" class="box" style="float:left"></div>
+        <div id="stat3" draggable="true" class="box" style="float:left"></div>
+        <div id="stat4" draggable="true" class="box" style="float:left"></div>
+        <div id="stat5" draggable="true" class="box" style="float:left"></div>
+        <div id="stat6" draggable="true" class="box" style="float:left"></div>
     </div>
     <br />
     <br />
@@ -283,31 +281,19 @@
     </div>
     <div class="container selectedStats">
 
+        <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
 
         <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
 
-
+        <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
 
         <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
 
-
-
         <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
-
-
-
-        <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
-
-
-
-        <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
-
-
 
         <div id="fakeStat" draggable="true" class="box" style="float:left"></div>
     </div>
 </div>
-
 
 <br />
 <br>
@@ -317,7 +303,8 @@
     <button onclick="printId()">Submit and Display Stats</button>
 </div>
 <div class="text-center">
-    <button class="backButton" onclick="window.location.href='/CC_CR';">Back</button><button class="continueButton" onclick="window.location.href='/CC_BA';">Continue</button>
+    <button class="backButton" onclick="window.location.href='/CC_CR';">Back</button>
+    <button class="continueButton" onclick="window.location.href='/CC_BA';">Continue</button>
 </div>
 
 @{
@@ -337,30 +324,28 @@
     */
 }
 <script>
-    var params = new URLSearchParams(location.search);
-
-    function checkCookie() {
-        let user = getCookie("username");
-        if (user != "") {
-            alert("Welcome again " + user);
-        } else {
-            user = prompt("Please enter your name:", "");
-            if (user != "" && user != null) {
-                setCookie("username", user, 365);
-            }
-        }
+    //-------Creates the stats for the drag and drop stuff
+    if(sessionStorage.getItem("started") == "0"){
+        sessionStorage.setItem("started", 1);
+        sessionStorage.setItem("stat1", fourDropLowest());
+        sessionStorage.setItem("stat2", fourDropLowest());
+        sessionStorage.setItem("stat3", fourDropLowest());
+        sessionStorage.setItem("stat4", fourDropLowest());
+        sessionStorage.setItem("stat5", fourDropLowest());
+        sessionStorage.setItem("stat6", fourDropLowest());
     }
+    document.getElementById("stat1").innerHTML = sessionStorage.getItem("stat1");
+    document.getElementById("stat2").innerHTML = sessionStorage.getItem("stat2");
+    document.getElementById("stat3").innerHTML = sessionStorage.getItem("stat3");
+    document.getElementById("stat4").innerHTML = sessionStorage.getItem("stat4");
+    document.getElementById("stat5").innerHTML = sessionStorage.getItem("stat5");
+    document.getElementById("stat6").innerHTML = sessionStorage.getItem("stat6");
 
-    if (params.get("selectClass") != null && params.get("selectClass") != "")
-        localStorage.setItem("class", params.get("selectClass"));
-
-    if (params.get("selectRace") != null && params.get("selectRace") != "")
-        localStorage.setItem("race", params.get("selectRace"));
 
     if (localStorage.getItem("class") == "barbarian") {
         document.getElementById("info").innerHTML = "Since you chose the barbarian class, we highly recommend that your highest stat be strength and your second highest be constitution.";
     } else if (localStorage.getItem("class") == "bard") {
-        document.getElementById("info").innerHTML = "Since you chose the bard class, we highly recomment that your highest stat be charisma and your second highest be dexterity or constitution";
+        document.getElementById("info").innerHTML = "Since you chose the bard class, we highly recommend that your highest stat be charisma and your second highest be dexterity or constitution";
     } else if (localStorage.getItem("class") == "cleric") {
         document.getElementById("info").innerHTML = "Since you chose the cleric class, we highly recommend that your highest stat be wisdom and your second highest be charisma or constitution.";
     } else if (localStorage.getItem("class") == "druid") {
