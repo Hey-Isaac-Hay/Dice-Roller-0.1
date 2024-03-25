@@ -21,102 +21,117 @@
     td, tr{
         padding:10px;
     }
-</style>
-<div class="text-center">
 
-<!-- Temporarily sends you to MapMaker-->
-<form method="get" action="/CCItems">
-    <h1> Choose <strong> DIFFERENT </strong> Proficiencies from the lists</h1>
-    <aside id="profInfo" class="text-left">
-            <h4>What are Proficiencies?</h4>
-            Proficiencies are skills that your character has specialized in. During the game, you will roll to attempt certain actions<br>
-            For every skill, you receive a bonus equal to your <strong> modifier</strong> in the corresponding stat -- which is (Stat Value - 10)/2<br>
-            When you are proficient in the skill you are attempting, you will receive an extra bonus depending on your level<br>
-            <br>
-            <table>
-                <tr>
-                    <td>Stat:</td>
-                    <td>STR:</td>
-                    <td>DEX:</td>
-                    <td>INT:</td>
-                    <td>WIS:</td>
-                    <td>CHA:</td>
-                </tr>
-                <tr>
-                    <td>Proficiencies: </td>
-                    <td>
-                        Athletics
-                    </td>
-                    <td>
-                        Acrobatics<br>
-                        Stealth
-                    </td>
-                    <td>
-                        Arcana<br>
-                        History<br>
-                        Investigation<br>
-                        Nature<br>
-                        Religion
-                    </td>
-                    <td>
-                        Animal Handling<br>
-                        Insight<br>
-                        Medicine<br>
-                        Perception<br>
-                        Survival
-                    </td>
-                    <td>
-                        Deception<br>
-                        Intimidation<br>
-                        Performance<br>
-                        Persuasion
-                    </td>
-                </tr>
-               
-                
-            </table>
-        </aside>
-        <p id="bgInfo"></p>
+    .ProfTitle {
+        font-weight: 500;
+        text-decoration: underline;
+        text-align: center
+    }
     
-    <button type="submit" class="submitButton" onclick="storeInfo()">Submit</button>
+</style>
+<div>
+
+<form method="get" action="/CCItems">
+    <div class="text-center">
+            <h1> Choose <strong> DIFFERENT </strong> Proficiencies from the lists</h1>
+            <aside id="profInfo" class="text-left">
+                <h4>What are Proficiencies?</h4>
+                Proficiencies are skills that your character has specialized in. During the game, you will roll to attempt certain actions<br>
+                For every skill, you receive a bonus equal to your <strong> modifier</strong> in the corresponding stat -- which is (Stat Value - 10)/2<br>
+                When you are proficient in the skill you are attempting, you will receive an extra bonus depending on your level<br>
+                <br>
+                <table>
+                    <tr>
+                        <td>Stat:</td>
+                        <td>STR:</td>
+                        <td>DEX:</td>
+                        <td>INT:</td>
+                        <td>WIS:</td>
+                        <td>CHA:</td>
+                    </tr>
+                    <tr>
+                        <td>Proficiencies: </td>
+                        <td>
+                            Athletics
+                        </td>
+                        <td>
+                            Acrobatics<br>
+                            Stealth
+                        </td>
+                        <td>
+                            Arcana<br>
+                            History<br>
+                            Investigation<br>
+                            Nature<br>
+                            Religion
+                        </td>
+                        <td>
+                            Animal Handling<br>
+                            Insight<br>
+                            Medicine<br>
+                            Perception<br>
+                            Survival
+                        </td>
+                        <td>
+                            Deception<br>
+                            Intimidation<br>
+                            Performance<br>
+                            Persuasion
+                        </td>
+                    </tr>
+
+
+                </table>
+            </aside>
+            <p id="bgInfo"></p>
+            <p id="half-orcInfo"></p>
+    </div>
+        <h2 class="ProfTitle">Class Proficiencies</h2>
+        <select id="sel1-class">
+            <option value="">Choose First Proficiency</option>
+        </select>
+        <select id="sel2-class">
+            <option value="">Choose Second Proficiency</option>
+        </select>
+        <select id="sel3-class">
+            <option value="">Choose Third Proficiency</option>
+        </select>
+        <select id="sel4-class">
+            <option value="">Choose Fourth Proficiency</option>
+        </select>
+        <br />
+        <br />
+        <h2 class="ProfTitle"id="raceProfTitle">Race Proficiencies</h2>
+        <br />
+        <select id="sel1-race">
+            <option value="">Choose First Proficiency</option>
+        </select>
+        <select id="sel2-race">
+            <option value"">Choose Second Proficiency</option>
+        </select>
+    <br />
+    <div class="text-center">
+        <button type="submit" class="submitButton" onclick="storeInfo()">Submit</button>
+    </div>
     <script>
-        //Create a select object
-        //Give it an id, and append it to the body
-        const sel1 = document.createElement("select");
-        sel1.setAttribute("id", "select1");
-        document.body.appendChild(sel1);
+        //Create objects to reference select tags and hide the 3rd and 4th
+        const sel1 = document.getElementById("sel1-class");
 
-        const sel2 = document.createElement("select");
-        sel2.setAttribute("id", "select2");
-        document.body.appendChild(sel2);
+        const sel2 = document.getElementById("sel2-class");
 
-        const sel3 = document.createElement("select");
-        sel3.setAttribute("id", "select3");
-        document.body.appendChild(sel3);
+        const sel3 = document.getElementById("sel3-class");
         sel3.style.display = "none";
 
-        const sel4 = document.createElement("select");
-        sel4.setAttribute("id", "select4");
-        document.body.appendChild(sel4);
+        const sel4 = document.getElementById("sel4-class");
         sel4.style.display = "none";
 
-        //Create the first option
-        //Append it to the matching select object
-        const op1_1 = document.createElement("option");
-        op1_1.innerText = "Choose First Proficiency";
-        sel1.appendChild(op1_1);
-        
-        const op1_2 = document.createElement("option");
-        op1_2.innerText = "Choose Second Proficiency";
-        sel2.appendChild(op1_2);
+        const sel5 = document.getElementById("sel1-race");
+        sel5.style.display = "none";
 
-        const op1_3 = document.createElement("option");
-        op1_3.innerText = "Choose Third Proficiency";
-        sel3.appendChild(op1_3);
+        const sel6 = document.getElementById("sel2-race");
+        sel6.style.display = "none";
 
-        const op1_4 = document.createElement("option");
-        op1_4.innerText = "Choose Fourth Proficiency";
-        sel4.appendChild(op1_4);
+        document.getElementById("raceProfTitle").style.display = "none";
 
         //Check for the class
         //Use makeOption to create options
@@ -306,6 +321,16 @@
                 op4.innerText = text;
                 op4.setAttribute("value", val);
                 sel4.appendChild(op4);
+            }else if (num==5){
+                const op1 = document.createElement("option");
+                op1.innerText = text;
+                op1.setAttribute("value", val);
+                sel5.appendChild(op1);
+
+                const op2 = document.createElement("option");
+                op2.innerText = text;
+                op2.setAttribute("value", val);
+                sel6.appendChild(op2);
             }
         }
 
@@ -318,7 +343,8 @@
             if (document.getElementById("select4").value != "Choose Fourth Proficiency")
                 localStorage.setItem("prof4", document.getElementById("select4").value);
         }
-
+            //Tell the Player what proficiencies their background gives them
+            //Helps them not choose the same one twice
             if (localStorage.getItem("bg") == "acolyte") {
                 document.getElementById("bgInfo").innerHTML = "Since you chose the acolyte background, you automatically get proficiencies in Insight and Religion.";
             } else if (localStorage.getItem("bg") == "charlatan") {
@@ -346,6 +372,35 @@
             } else {
                 document.getElementById("bgInfo").innerHTML = "Choose a class on the previous page and we will give a suggestion on how to arrange your stats.";
             }
+            
+            if(localStorage.getItem("race") == "halfOrc"){
+                document.getElementById("half-orcInfo").innerHTML = "Since you chose the half-orc race, you automatically get a proficiency in Intimidation";
+            }
+            
+            if(localStorage.getItem("race") == "halfElf"){
+                document.getElementById("raceProfTitle").style.display = "inline";
+                sel5.style.display = "inline";
+                sel6.style.display = "inline";
+                makeOption("Acrobatics", "acrobatics", 5);
+                makeOption("Animal Handling", "anmlH", 5);
+                makeOption("Arcana", "arcana", 5);
+                makeOption("Athletics", "athletics", 5);
+                makeOption("Deception", "deception", 5);
+                makeOption("History", "history", 5);
+                makeOption("Insight", "insight", 5);
+                makeOption("Intimidation", "intimidation", 5);
+                makeOption("Investigation", "investigation", 5);
+                makeOption("Medicine", "medicine", 5);
+                makeOption("Nature", "nature", 5);
+                makeOption("Perception", "perception", 5);
+                makeOption("Performance", "performance", 5);
+                makeOption("Persuasion", "persuasion", 5);
+                makeOption("Religion", "religion", 5);
+                makeOption("Sleight of Hand", "slghtfH", 5);
+                makeOption("Stealth", "stealth", 5);
+                makeOption("Survival", "survival", 5);
+            } 
+            
     </script>
 </form>
 </div>
