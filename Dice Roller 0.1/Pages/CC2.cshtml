@@ -253,7 +253,7 @@
     <button>TEST</button>
 </form>
 -->
-
+<form method="get" action="/CC_BA">
 <div id="statsBox" style="">
     <div class="container text-center">
         <div id="stat1" draggable="true" class="box" style="float:left"></div>
@@ -299,14 +299,11 @@
 <br>
 <br />
 
-<div>
-    <button onclick="printId()">Submit and Display Stats</button>
-</div>
 <div class="text-center">
     <button class="backButton" onclick="window.location.href='/CC_CR';">Back</button>
-    <button class="continueButton" onclick="window.location.href='/CC_BA';">Continue</button>
+    <button class="submitButton" onclick="printId()">Submit</button>
 </div>
-
+</form>
 @{
     /*
     string strStat = HttpContext.Request.Query["strStat"].ToString();

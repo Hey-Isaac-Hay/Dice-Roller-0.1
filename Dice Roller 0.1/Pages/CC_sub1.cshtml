@@ -8,8 +8,8 @@
     aside {
         position: fixed;
         border-radius: 20px;
-        right: 50px;
-        width: 30%;
+        right: 75px;
+        width: 35%;
         padding: 30px;
         margin: 10px;
         font-style: italic;
@@ -25,15 +25,17 @@
     .ProfTitle {
         font-weight: 500;
         text-decoration: underline;
-        text-align: center
+        
     }
     
 </style>
 <div>
 
-<form method="get" action="/CCItems">
+<form method ="get" action="/CharSheet">
     <div class="text-center">
             <h1> Choose <strong> DIFFERENT </strong> Proficiencies from the lists</h1>
+            <p id="bgInfo"></p>
+            <p id="half-orcInfo"></p>
             <aside id="profInfo" class="text-left">
                 <h4>What are Proficiencies?</h4>
                 Proficiencies are skills that your character has specialized in. During the game, you will roll to attempt certain actions<br>
@@ -79,14 +81,11 @@
                             Persuasion
                         </td>
                     </tr>
-
-
                 </table>
             </aside>
-            <p id="bgInfo"></p>
-            <p id="half-orcInfo"></p>
     </div>
-        <h2 class="ProfTitle">Class Proficiencies</h2>
+
+        <h2 class="ProfTitle" style="left:500px">Class Proficiencies</h2>
         <select id="sel1-class">
             <option value="">Choose First Proficiency</option>
         </select>
@@ -109,10 +108,22 @@
         <select id="sel2-race">
             <option value"">Choose Second Proficiency</option>
         </select>
+        <br />
+        <br />
+        <!--
+        <h2 class="ProfTitle" id="raceProfTitle">Tool Proficiencies</h2>
+        <br />
+        <h4 id="artToolTitle">Artisan Tool Proficiencies</h4>
+        <select id="sel1-artTools">
+            <option value"">Choose First Proficiency</option>
+        </select>
+        -->
+
     <br />
     <div class="text-center">
         <button type="submit" class="submitButton" onclick="storeInfo()">Submit</button>
     </div>
+   </form>
     <script>
         //Create objects to reference select tags and hide the 3rd and 4th
         const sel1 = document.getElementById("sel1-class");
@@ -132,6 +143,8 @@
         sel6.style.display = "none";
 
         document.getElementById("raceProfTitle").style.display = "none";
+
+        //const sel7 = document.getElementById("sel1-artTools");
 
         //Check for the class
         //Use makeOption to create options
@@ -178,6 +191,24 @@
             makeOption("Insight", "insight", 2);
             makeOption("Religion", "religion", 2);
             makeOption("Stealth", "stealth", 2);
+
+            makeOption("Alchemist's Supplies", "alchemy", 6);
+            makeOption("Brewer's Supplies", "brew", 6);
+            makeOption("Calligrapher's Supplies", "calligraphy", 6);
+            makeOption("Carpenter's Tools", "carpenter", 6);
+            makeOption("Cartographer's Tools", "cart", 6);
+            makeOption("Cobbler's Tools", "cobbler", 6);
+            makeOption("Cook's Utensils", "cook", 6);
+            makeOption("Glassblower's Tools", "glass", 6);
+            makeOption("Jewler's Tools", "jewel", 6);
+            makeOption("Leatherworker's Tools", "leather", 6);
+            makeOption("Mason's Tools", "mason", 6);
+            makeOption("Painter's Supplies", "paint", 6);
+            makeOption("Potter's Tools", "potter", 6);
+            makeOption("Smith's Tools", "smithy", 6);
+            makeOption("Tinker's Tools", "tinker", 6);
+            makeOption("Weaver's Tools", "weaver", 6);
+            makeOption("Woodcarver's Tools", "wood", 6);
 
         } else if (localStorage.getItem("class") == "paladin") {
             makeOption("Athletics", "athletics", 2);
@@ -331,6 +362,11 @@
                 op2.innerText = text;
                 op2.setAttribute("value", val);
                 sel6.appendChild(op2);
+            }else if (num==6){
+                const op1 = document.createElement("option");
+                op1.innerText = text;
+                op1.setAttribute("value", val);
+                sel7.appendChild(op1);
             }
         }
 
@@ -370,7 +406,7 @@
             } else if (localStorage.getItem("bg") == "wizard") {
                 document.getElementById("bgInfo").innerHTML = "Since you chose the wizard class, we highly recommend that your highest stat be intelligence and your second highest be constitution or wisdom.";
             } else {
-                document.getElementById("bgInfo").innerHTML = "Choose a class on the previous page and we will give a suggestion on how to arrange your stats.";
+                document.getElementById("bgInfo").innerHTML = "Choose a background on the previous page and we will explain which skills you are already proficient in.";
             }
             
             if(localStorage.getItem("race") == "halfOrc"){
@@ -402,7 +438,7 @@
             } 
             
     </script>
-</form>
+
 </div>
 <div class="text-center">
     <button class="backButton" style="margin:auto;" onclick="window.location.href='/CC_BA';">Back</button>

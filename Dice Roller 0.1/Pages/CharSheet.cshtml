@@ -1,0 +1,38 @@
+﻿@page
+@model Dice_Roller_0._1.Pages.CharSheetModel
+@{
+}
+<h1><u>Character Sheet:</u></h1>
+<h2>Character Info:</h2>
+<p id="name"></p>
+<p id="class"></p>
+<p id="race"></p>
+<p id="bg"></p>
+<p id="al"></p>
+<h2>Stats:</h2>
+<p id="str"></p>
+<p id="dex"></p>
+<p id="con"></p>
+<p id="int"></p>
+<p id="wis"></p>
+<p id="cha"></p>
+
+
+<script>
+    document.getElementById("name").innerHTML = "Name: " + localStorage.getItem("name");
+    document.getElementById("class").innerHTML = "Class: " + localStorage.getItem("class");
+    document.getElementById("race").innerHTML = "Race: " + localStorage.getItem("race");
+    document.getElementById("bg").innerHTML = "Background: " + localStorage.getItem("bg");
+    document.getElementById("al").innerHTML = "Alignment: " + localStorage.getItem("al");
+
+    document.getElementById("str").innerHTML = "Strength: " + localStorage.getItem("str") + " Modifier: " + getMod(localStorage.getItem("str"));
+    document.getElementById("dex").innerHTML = "Dexterity: " + localStorage.getItem("dex") + " Modifier: " + getMod(localStorage.getItem("dex"));
+    document.getElementById("con").innerHTML = "Constitution: " + localStorage.getItem("con") + " Modifier: " + getMod(localStorage.getItem("con"));
+    document.getElementById("int").innerHTML = "Intelligence: " + localStorage.getItem("int") + " Modifier: " + getMod(localStorage.getItem("int"));
+    document.getElementById("wis").innerHTML = "Wisdom: " + localStorage.getItem("wis") + " Modifier: " + getMod(localStorage.getItem("wis"));
+    document.getElementById("cha").innerHTML = "Charisma: " + localStorage.getItem("cha") + " Modifier: " + getMod(localStorage.getItem("cha"));
+
+    function getMod(stat){
+        return Math.floor((stat-10)/2);
+    }
+</script>
